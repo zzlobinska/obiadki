@@ -1,0 +1,40 @@
+@import 'src/styles';
+
+.phoneFormatter {
+  padding: $spacing-3 $spacing-5 $spacing-3 $spacing-3 !important;
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.23) !important;
+  border-radius: $radius-s !important;
+  transition: all 0.2s !important;
+
+  & > * {
+    outline: none;
+  }
+
+  & input {
+    font-size: 15px !important;
+    font-family: $main-font;
+
+    &::placeholder {
+      color: #9a9fa5;
+    }
+  }
+
+  &:hover {
+    border: 1px solid !important;
+  }
+
+  &:focus-within {
+    border: 1px solid #4849ff !important;
+    box-shadow: 0 0 0 1px #4849ff !important;
+  }
+
+  &.error {
+    border: 1px solid $danger-color !important;
+  }
+
+  &:focus-within.error {
+    border: 1px solid $danger-color !important;
+    box-shadow: 0 0 0 1px $danger-color !important;
+  }
+}

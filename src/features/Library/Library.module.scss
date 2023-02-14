@@ -1,0 +1,12 @@
+@import 'src/styles';
+
+.container {
+  @include element-flex(column);
+  width: 100%;
+  padding: 50px calc(50% - 600px);
+  background: $gray-lightest-color;
+}
+
+.page {
+  display: flex;
+}

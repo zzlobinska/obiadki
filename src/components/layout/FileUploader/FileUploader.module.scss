@@ -1,0 +1,58 @@
+@import 'src/styles';
+
+.container {
+  display: flex;
+  position: relative;
+  z-index: auto;
+}
+
+.input {
+  display: none;
+}
+
+.fileInfo {
+  @include element-flex(column, center, flex-start);
+  @include trimText;
+  padding: 0 20px;
+}
+.fileSize {
+  //font-size: $font-size-xs;
+  //color: $gray-color;
+}
+
+.fileName {
+  @include trimText;
+  //font-size: $font-size-s;
+  //color: $dark-color;
+  //font-weight: $font-semiBold;
+  max-width: 15ch;
+}
+
+.clearButton {
+  @include element-flex(column, center, center);
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  border: none;
+  border-radius: 50%;
+  background: transparent url(../../../assets/icons/closeIcon.svg) no-repeat;
+  position: absolute;
+  right: -2px;
+  top: 0;
+  cursor: pointer;
+}
+
+.loaderWrapper {
+  @include element-flex(column, center, center);
+  height: 50px;
+  width: 100px;
+  //background: $orange-color;
+  //border-radius: $radius-m;
+}
+
+.loadButton {
+  min-width: 100px;
+  z-index: auto;
+  word-break: keep-all;
+  white-space: nowrap;
+}

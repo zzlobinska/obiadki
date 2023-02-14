@@ -1,0 +1,12 @@
+@use 'src/styles' as *;
+
+.container {
+  width: calc(100% - $sidebar-width);
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: $sidebar-width;
+  right: 0;
+  background: darken(#fff, 5%);
+  color: #000;
+}

@@ -1,0 +1,24 @@
+@import 'src/styles';
+
+.wrapper {
+  @include element-flex(column, flex-start, center);
+  gap: $spacing-4;
+  padding: $spacing-4;
+}
+
+.child {
+  @include element-flex(column, flex-start, flex-start);
+  width: 100%;
+  gap: $spacing-4;
+  padding: $spacing-4;
+  border-radius: $radius-m;
+  background-color: #52caf6;
+}
+
+.component {
+  @include element-flex(column, center, center);
+  width: 100%;
+  padding: $spacing-7;
+  border-radius: $radius-m;
+  border: 1px solid $primary-color;
+}

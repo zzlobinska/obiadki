@@ -1,0 +1,83 @@
+@use 'sass:math';
+
+@function stripUnit($value) {
+  @return math.div($value, ($value * 0 + 1));
+}
+@function rem($pxValue) {
+  @return math.div(stripUnit($pxValue), stripUnit($html-font-size)) + rem;
+}
+
+//Main fonts
+$main-font: 'Inter', sans-serif;
+$font-poppins: 'Poppins', sans-serif;
+
+//HTML font size
+$html-font-size: 16px;
+
+// Line height
+$line-height-1: rem(12); //15px
+$line-height-2: rem(16); //18px
+$line-height-3: rem(18); //19px
+$line-height-4: rem(20); //20px
+$line-height-5: rem(24); //24px
+$line-height-6: rem(30); //30px
+$line-height-7: rem(45); //45px
+
+// Letter spicing
+$letter-spacing-3: rem(1); //-1px;
+$letter-spacing-2: rem(-0.5); //-0.5px;
+$letter-spacing-1: rem(-0.25); //-0.25px;
+$letter-spacing-4: rem(0.25); //0.25px;
+$letter-spacing-5: rem(0.5); //0.5px;
+$letter-spacing-6: rem(1); //1px;
+
+// Font sizes
+$font-size-xxl: rem(36); //36px;
+$font-size-xl: rem(24); //24px;
+$font-size-l: rem(18); //18px;
+$font-size-m: rem(16); //16px;
+$font-size-s: rem(14); //14px;
+$font-size-xs: rem(12); //12px;
+$font-size-xxs: rem(10); //10px;
+
+// Spacing
+$spacing-1: rem(3); //3px;
+$spacing-2: rem(6); //6px;
+$spacing-3: rem(12); //12px;
+$spacing-4: rem(18); //18px;
+$spacing-5: rem(24); //24px;
+$spacing-6: rem(30); //30px;
+$spacing-7: rem(32); //32px;
+$spacing-8: rem(48); //48px;
+$spacing-9: rem(60); //60px;
+$spacing-10: rem(72); //72px;
+$spacing-11: rem(96); //96px;
+$spacing-12: rem(120); //120px;
+
+// Border radius
+$radius-l: 13px;
+$radius-m: 10px;
+$radius-s: 6px;
+
+// Font weights
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semiBold: 600;
+$font-bold: 700;
+$font-extraBold: 800;
+$font-black: 900;
+
+//sidebar
+$sidebar-width: 245px;
+$sidebar-close-width: 85px;
+
+// Constants sizes
+$nav-height: 82px;
+$mob-nav-height: 70px;
+
+$offset-top-navbar: 122px;
+$public-pages-top-margin: 54px;
+$topbar-notification-height: 44px;
+$topbar-notification-transition-timing-function: linear;
+$topbar-notification-transition-duration: 0.1s;

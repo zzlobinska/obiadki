@@ -1,0 +1,56 @@
+@import 'src/styles';
+
+.link {
+  @include element-flex(row, flex-start, center);
+  gap: $spacing-3;
+  position: relative;
+  height: 44px;
+  padding: $spacing-3 $spacing-4;
+  border-radius: $radius-l;
+  font-weight: $font-semiBold;
+  font-size: $font-size-s;
+  font-family: $main-font;
+  color: $font-color-gray;
+  letter-spacing: $letter-spacing-4;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+
+  &.button {
+    background: transparent;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+
+    path {
+      fill: $font-color-gray;
+    }
+  }
+
+  &.isClose {
+    width: 60px;
+    svg {
+      margin: 0;
+    }
+  }
+
+  &:hover {
+    color: $font-color-dark;
+    background: transparentize($background-color-darken, 0.2);
+    svg path {
+      fill: $font-color-dark;
+    }
+  }
+
+  &.active {
+    background: $background-color-darken;
+    color: $font-color-dark;
+    svg path {
+      fill: $primary-color;
+    }
+  }
+}

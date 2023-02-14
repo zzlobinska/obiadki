@@ -1,0 +1,9 @@
+@import 'src/styles';
+
+.container {
+  width: 100%;
+  @include element-flex(column);
+  padding: 50px calc(50% - 600px);
+  background: $gray-lightest-color;
+  min-height: 100vh;
+}

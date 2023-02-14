@@ -1,0 +1,44 @@
+@import 'src/styles';
+
+.container {
+  width: 44px;
+  height: 22px;
+  border-radius: 99px;
+  background: lighten(green, 10%);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s;
+  box-shadow: inset 0 0 10px rgba(100, 100, 100, 0.3);
+
+  &.off {
+    background: lighten(red, 10%);
+  }
+}
+
+.switch {
+  width: 16px;
+  height: 16px;
+  border-radius: 99px;
+  background: #ffffff;
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translate(0, -50%);
+  transition: transform 0.2s;
+  box-shadow: 0 0 10px rgba(100, 100, 100, 0.41);
+
+  &.off {
+    transform: translate(-22px, -50%);
+  }
+}
+
+.withLabel {
+  @include element-flex(row, center, center);
+  gap: 6px;
+  white-space: nowrap;
+  line-height: normal;
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+}

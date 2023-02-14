@@ -1,0 +1,34 @@
+$gray-lightest-color: #f0f0f0;
+$gray-lighter-color: #ededed;
+$gray-light-color: #d8d8d8;
+
+$primary-color: #297fff;
+$primary-color-darken: #005eeb;
+
+$secondary-color: #3c4048;
+$secondary-color-darken: #31343a;
+
+$background-color: #ffffff;
+$background-color-darken: #f4f5f7;
+
+$gray-color: #b2b2b2;
+$danger-color: #b00020;
+
+$font-color-dark: #131313;
+$font-color-gray: #3c4048;
+
+$font-color-light: #ffffff;
+
+$white-color: #fff;
+$black-color: #000;
+
+$outline-color: #5271ff;
+
+$input-border-color: #9b9b9b;
+
+// Box shadows
+$shadow-main: 3px 3px 15px 0 rgba(0, 0, 0, 0.05);
+$shadow-input-focus: 0 0 0 2px transparentize(darken($outline-color, 5%), 0.4);
+$shadow-input-error: 0 0 0 2px transparentize($danger-color, 0.4);
+
+$sidebar-background: #fff;

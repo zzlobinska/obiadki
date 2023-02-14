@@ -1,0 +1,20 @@
+@import 'src/styles';
+
+.container {
+  width: calc(100% - $sidebar-width);
+  margin-left: $sidebar-width;
+  @include element-flex(column);
+
+  &.isSidebarClose {
+    width: calc(100% - $sidebar-close-width);
+    margin-left: $sidebar-close-width;
+  }
+}
+
+.inner {
+  width: 100%;
+}
+
+.page {
+  width: 100%;
+}

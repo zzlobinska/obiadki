@@ -1,0 +1,76 @@
+@import 'src/styles';
+
+.input {
+  @include appearance(none);
+  font-family: $main-font;
+  width: 100%;
+  color: $font-color-dark;
+  font-size: $font-size-m;
+  padding: $spacing-3 $spacing-5;
+  border-radius: $radius-m;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $input-border-color;
+  transition: border 0.1s, border-color 0.1s;
+  height: 50px;
+
+  &:hover {
+    cursor: text;
+  }
+
+  &:focus {
+    box-shadow: $shadow-input-focus;
+    outline: none;
+  }
+
+  &:disabled {
+    color: lighten($font-color-dark, 50%);
+    cursor: not-allowed;
+  }
+
+  &.error {
+    border-color: $danger-color;
+    box-shadow: $shadow-input-error;
+  }
+
+  &.error:focus {
+    box-shadow: $shadow-input-error;
+    outline-color: $danger-color;
+  }
+}
+
+.readOnlyInput:disabled {
+  color: $font-color-dark;
+  background-color: #ffffff;
+  cursor: not-allowed;
+}
+
+.inputWrapper {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background-size: 100% auto;
+    transform: translateY(-50%);
+    cursor: default !important;
+  }
+}
+
+@include placeholder {
+  font-size: $font-size-m;
+  color: $gray-color;
+}
+
+.disabled {
+  @include disabled-ui();
+}
+
+.passwordWrapper {
+  position: relative;
+  max-height: 52px;
+}

@@ -1,0 +1,55 @@
+@import 'src/styles';
+
+.wrapperArea {
+  position: relative;
+}
+
+.textarea {
+  padding: $spacing-3 $spacing-5;
+  background-color: $white-color;
+  min-height: 50px;
+  color: $font-color-dark;
+  font-size: $font-size-m;
+  width: 100%;
+  font-family: $main-font;
+  border-radius: $radius-m;
+  border: 1px solid $input-border-color;
+  resize: vertical;
+  transition: border 0.1s, border-color 0.1s;
+
+  &:hover {
+    cursor: text;
+  }
+
+  &:focus {
+    box-shadow: $shadow-input-focus;
+    outline: none;
+  }
+
+  &:disabled {
+    @include disabled-ui;
+  }
+
+  &__error {
+    border-color: $danger-color;
+    box-shadow: $shadow-input-error;
+  }
+}
+
+@include placeholder {
+  font-size: $font-size-m;
+  //color: $gray-color;
+}
+
+.error {
+  //border-color: $danger-color;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.4);
+}
+
+.counter {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  //font-size: $font-size-xs;
+  //color: $gray-medium-color;
+}

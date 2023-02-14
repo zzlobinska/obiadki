@@ -1,0 +1,38 @@
+@import 'src/styles';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-5 $spacing-6;
+  max-width: 480px;
+  width: 100%;
+  border-radius: $radius-s;
+  cursor: default;
+  box-shadow: $shadow-main;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: $font-size-m;
+  font-weight: $font-semiBold;
+  color: #fff;
+  cursor: text;
+}
+
+.icon {
+  width: 30px;
+  cursor: pointer;
+  background: inherit;
+}
+
+.message {
+  padding-top: 10px;
+  font-size: $font-size-m;
+  color: #fff;
+  cursor: text;
+}

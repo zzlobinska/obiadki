@@ -1,0 +1,45 @@
+// Media queries breakpoints
+$screen-ss: 320px;
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-sd: 1024px;
+$screen-lg: 1240px;
+$screen-xl: 1600px;
+
+// Mixins breakpoints
+@mixin lgDesktopWidth {
+  @media screen and (max-width: $screen-xl) {
+    @content;
+  }
+}
+@mixin desktopWidth {
+  @media screen and (max-width: $screen-lg) {
+    @content;
+  }
+}
+@mixin smDesktopWidth {
+  @media screen and (max-width: $screen-sd) {
+    @content;
+  }
+}
+@mixin tabletWidth {
+  @media screen and (max-width: $screen-sm) {
+    @content;
+  }
+}
+@mixin phoneWidth {
+  @media screen and (max-width: $screen-xs) {
+    @content;
+  }
+}
+@mixin smPhoneWidth {
+  @media screen and (max-width: $screen-ss) {
+    @content;
+  }
+}
+
+@mixin customWidth($width){
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}

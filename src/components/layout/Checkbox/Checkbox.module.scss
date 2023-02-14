@@ -1,0 +1,75 @@
+@import 'src/styles';
+
+.checkboxContainer {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  gap: 6px;
+
+  @include smDesktopWidth() {
+    align-items: flex-start;
+  }
+}
+
+.checkbox {
+  border: 1px solid darken($input-border-color, 5%);
+  border-radius: $radius-s;
+  height: 20px;
+  min-width: 20px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: background-color 0.1s, border 0.1s, border-color 0.1s;
+  @include appearance(none);
+  cursor: pointer;
+
+  &:checked {
+    border: none;
+    color: white;
+    background-color: $gray-color;
+  }
+
+  &:focus {
+    box-shadow: $shadow-input-focus;
+  }
+
+  &:disabled + label {
+    cursor: not-allowed !important;
+  }
+
+  &__error {
+    border-color: $danger-color;
+    box-shadow: $shadow-input-error;
+  }
+}
+
+.errorMessage {
+  padding-top: 5px;
+  color: $danger-color;
+  font-size: $font-size-xs;
+  animation: fadeIn 0.5s;
+}
+
+.label {
+  font-size: $font-size-m;
+  line-height: 20px;
+  color: $font-color-dark;
+  cursor: pointer;
+
+  &.small {
+    font-size: $font-size-xs;
+    color: $gray-color;
+    line-height: 16px;
+  }
+}
+
+.star {
+  color: $danger-color;
+}
+
+.disabled {
+  @include disabled-ui();
+}
+
+@keyframes fadeIn {
+  @include keyframe-fadeIn;
+}

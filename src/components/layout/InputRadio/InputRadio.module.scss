@@ -1,0 +1,47 @@
+@import 'src/styles';
+
+.container {
+  display: flex;
+  align-items: flex-start;
+
+  &:first-child {
+    margin-bottom: 10px;
+  }
+}
+
+.disabled {
+  @include disabled-ui();
+
+  .label,
+  .label:hover {
+    cursor: not-allowed;
+  }
+}
+
+.label {
+  margin-left: 10px;
+  font-size: $font-size-m;
+  color: $font-color-dark;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.box {
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  border: 1px solid darken($input-border-color, 15%);
+  transition: 0.1s all linear;
+  @include appearance(none);
+
+  &__error {
+    box-shadow: $shadow-input-error;
+    border-color: $danger-color;
+  }
+
+  &:checked {
+    border: 7px solid $gray-color;
+  }
+}

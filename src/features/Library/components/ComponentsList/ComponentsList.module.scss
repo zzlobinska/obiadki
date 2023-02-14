@@ -1,0 +1,11 @@
+@import 'src/styles';
+
+.container {
+  @include element-flex(column);
+  gap: 24px;
+  width: 100%;
+}
+
+.select {
+  width: 250px;
+}
