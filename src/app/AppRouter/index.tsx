@@ -7,6 +7,7 @@ import { Page, ScrollToTop } from 'components';
 import Landing from 'src/features/LandingPage';
 import ErrorPage from 'src/features/NotFoundRoute';
 import Library from 'features/Library';
+import RecepiesPage from 'src/features/RecepiesPage';
 
 const RouterComponents = () => (
   <>
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
           {
             path: '/lib',
             element: <Library />
+          },
+          {
+            path: '/przepisy',
+            element: <RecepiesPage/>
           }
         ]
       }
