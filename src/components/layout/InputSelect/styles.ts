@@ -3,23 +3,25 @@ export const selectStyles = (hasError: boolean) => ({
   container: (base: any) => ({
     ...base,
     width: '100%',
-    height: '40px'
+    height: '50px',
+   
   }),
   placeholder: (base: any) => ({
     ...base,
     color: '#9A9FA5FF',
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: 400,
     marginLeft: 0,
-    marginRight: 0
+    marginRight: 0,
+    padding: 12,
   }),
   control: (base: any, state: any) => ({
     ...base,
-    height: '40px',
+    height: '50px',
     fontWeight: 700,
     outline: 'none',
     fontSize: 15,
-    borderRadius: 6,
+    borderRadius: 10,
     width: '100%',
     borderColor: 'transparent',
     textAlign: 'left',
