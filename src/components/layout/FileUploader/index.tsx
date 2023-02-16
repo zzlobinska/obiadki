@@ -28,7 +28,7 @@ const FileUploader = (props: FileUploaderProps) => {
     value,
     setFile,
     isLoading,
-    allowedFiles = ['application/pdf']
+    // allowedFiles = ['image/*']
   } = props;
   const input = useRef<HTMLInputElement>(null);
   const handleLoad = () => input.current?.click();
@@ -40,9 +40,9 @@ const FileUploader = (props: FileUploaderProps) => {
       return;
     }
 
-    if (!allowedFiles.includes(e.target.files[0].type)) {
-      return Toasts.notifyCommon(['Niedozwolony format pliku.']);
-    }
+    // if (!allowedFiles.includes(e.target.files[0].type)) {
+    //   return Toasts.notifyCommon(['Niedozwolony format pliku.']);
+    // }
 
     setFile(e.target.files[0]);
   };
@@ -72,7 +72,7 @@ const FileUploader = (props: FileUploaderProps) => {
               [style.error]: wrapperProps.hasError
             })}
             id={'fileUpload'}
-            gray
+            // gray
           />
         )}
         <input

@@ -1,6 +1,8 @@
 import MealThumbnail from "src/components/layout/MealThumbnail";
 import style from './RecepiesList.module.scss'
 
+
+
 const RecepiesList = () => {
     const DUMMY_RECEPIES = [
 		{
