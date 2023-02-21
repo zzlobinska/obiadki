@@ -10,7 +10,7 @@ import NewRecepieModal from '../NewRecepieModal';
 import style from './RecepiesHeader.module.scss';
 
 const RecepiesHeader = () => {
-	const [isModalActive, setIsModalActive] = useState(true);
+	const [isModalActive, setIsModalActive] = useState(false);
 	const closeModal = () => {
 		setIsModalActive(false);
 	};
@@ -31,7 +31,7 @@ const RecepiesHeader = () => {
 					label='dodaj przepis'
 				/>
 			</div>
-			<NewRecepieModal closeModal={closeModal} isModalActive={isModalActive}/>
+			<NewRecepieModal closeModal={closeModal} isModalActive={isModalActive} />
 		</header>
 	);
 };

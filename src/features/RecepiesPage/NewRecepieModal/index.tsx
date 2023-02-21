@@ -82,8 +82,8 @@ const NewRecepieModal = ({
 					</div>
 				</div>
 				<div className={style.add}>
-					<p>Dodaj składnik</p>
 					<button onClick={addIngridient} className={style.ingridients_btn}>
+					<p>Dodaj składnik</p>
 						<BsFillPlusSquareFill size={25} />
 					</button>
 				</div>
