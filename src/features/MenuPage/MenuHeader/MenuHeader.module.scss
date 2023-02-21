@@ -1,0 +1,19 @@
+@use 'src/styles' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 42px;
+  color: $darker-main-color;
+}
+
+.btn {
+  background-color: transparent;
+  color: $darker-main-color;
+  cursor: pointer;
+}

@@ -8,7 +8,6 @@ import {
 import { Button, Input, InputSelect, Modal, Textarea } from 'src/components';
 import Searchbar from 'src/components/layout/Searchbar';
 import NewRecepieModal from '../NewRecepieModal';
-import RecepiesSearch from '../RecepiesSearch';
 import style from './RecepiesHeader.module.scss';
 
 const RecepiesHeader = () => {
