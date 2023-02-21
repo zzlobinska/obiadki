@@ -33,7 +33,7 @@ const NewRecepieModal = ({
 		);
 	};
 
-	const Ingridient = ({ingridient}: { ingridient: IngridientType }) => {
+	const Ingridient = ({ ingridient }: { ingridient: IngridientType }) => {
 		return (
 			<div className={style.ingridients}>
 				<Input label='Ilość' />
@@ -83,7 +83,7 @@ const NewRecepieModal = ({
 				</div>
 				<div className={style.add}>
 					<button onClick={addIngridient} className={style.ingridients_btn}>
-					<p>Dodaj składnik</p>
+						<p>Dodaj składnik</p>
 						<BsFillPlusSquareFill size={25} />
 					</button>
 				</div>

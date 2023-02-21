@@ -6,7 +6,9 @@ import {
 	BsFillClockFill,
 } from 'react-icons/bs';
 import { Button, Input, InputSelect, Modal, Textarea } from 'src/components';
+import Searchbar from 'src/components/layout/Searchbar';
 import NewRecepieModal from '../NewRecepieModal';
+import RecepiesSearch from '../RecepiesSearch';
 import style from './RecepiesHeader.module.scss';
 
 const RecepiesHeader = () => {
@@ -20,10 +22,7 @@ const RecepiesHeader = () => {
 	return (
 		<header className={style.header}>
 			<InputSelect wrapperStyle={style.select} />
-			<div className={style.searchbar}>
-				<Input wrapperStyle={style.select} placeholder='Szukaj...' />
-				<BsSearch className={style.searchbar_icon} />
-			</div>
+			<Searchbar />
 			<div className={style.add_recepie}>
 				<Button
 					onClick={openModal}
