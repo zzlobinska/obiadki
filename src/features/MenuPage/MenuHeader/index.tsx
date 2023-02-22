@@ -11,6 +11,7 @@ const MenuHeader = () => {
 	};
 	const closeModal = () => {
 		setIsModalOpen(false);
+		
 	};
 
 	return (
