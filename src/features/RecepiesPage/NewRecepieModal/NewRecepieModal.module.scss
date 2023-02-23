@@ -15,6 +15,9 @@
 	padding: 30px 20px;
 	border-radius: 10px;
 	border: 1px solid darken($main-color, 0.5);
+	
+	
+
 }
 
 .name {
@@ -22,11 +25,25 @@
 	align-items: flex-end;
 	justify-content: space-between;
 	gap: 30px;
+	
+	@media (max-width:600px) {
+		align-items: center;
+		flex-direction: column;
+		
+		
+		
+	}
 }
 
 .details {
 	display: flex;
 	gap: 60px;
+	@media (max-width:600px) {
+		gap: 10px;
+		width: 100%;
+		flex-direction: column;
+		
+	}
 }
 .wrapper {
 	display: flex;
@@ -38,6 +55,12 @@
 	display: grid;
 	grid-template-columns: 70px 1fr 30px;
 	gap: 40px;
+	@media (max-width:600px) {
+		gap: 10px;
+		width: 100%;
+		grid-template-columns: 60px 1fr 10px;
+		
+	}
 }
 
 .ingridients_btn {

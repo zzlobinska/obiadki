@@ -33,6 +33,10 @@
   max-height: 80vh;
   position: relative;
   animation: fadeIn 0.2s ease-out;
+  @media (max-width:1440px) {
+		padding: 1rem;
+		
+	}
   
 
   &::-webkit-scrollbar-track {

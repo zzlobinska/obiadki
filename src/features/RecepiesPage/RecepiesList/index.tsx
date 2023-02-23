@@ -21,6 +21,18 @@ const RecepiesList = () => {
 				'https://images.aws.nestle.recipes/resized/2020_02_19T16_00_53_image_708_600.ashx',
 			key: uuid(),
 		},
+		{
+			title: 'nalesniki',
+			image:
+				'https://images.aws.nestle.recipes/resized/2020_02_19T16_00_53_image_708_600.ashx',
+			key: uuid(),
+		},
+		{
+			title: 'nalesniki',
+			image:
+				'https://images.aws.nestle.recipes/resized/2020_02_19T16_00_53_image_708_600.ashx',
+			key: uuid(),
+		},
 	];
 
 	return (
