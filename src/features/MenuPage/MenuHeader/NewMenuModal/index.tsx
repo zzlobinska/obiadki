@@ -4,10 +4,10 @@ import { DayPicker, DateRange } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import { addDays } from 'date-fns';
 import style from './NewMenuModal.module.scss';
-import { BsCheck2, BsPlusSquare } from 'react-icons/bs';
+import { BsCheck2, BsFillReplyFill, BsPlusSquare } from 'react-icons/bs';
 import { pl } from 'date-fns/locale';
-import MenuCard from './MenuCard';
 import { eachDayOfInterval } from 'date-fns';
+import NewMenu from './components/NewMenu';
 
 type NewMenuModalProps = {
 	isModalOpen: boolean;
@@ -32,16 +32,19 @@ const NewMenuModal = (props: NewMenuModalProps) => {
 	const dateArray =
 		start && end ? eachDayOfInterval({ start: start, end: end }) : [];
 
-	console.log(dateArray);
 	const title = from ? `jadłospis ${from} - ${to}` : 'przygotuj jadłospis';
 
 	const closeModalHandler = () => {
 		props.closeModal();
 		setRange(undefined);
+		setIsMenuActivated(false);
 	};
 
 	const generateMenu = () => {
 		setIsMenuActivated(true);
+	};
+	const goBack = () => {
+		setIsMenuActivated(false);
 	};
 
 	return (
@@ -51,7 +54,7 @@ const NewMenuModal = (props: NewMenuModalProps) => {
 				isOpen={props.isModalOpen}
 				closeModal={closeModalHandler}
 			>
-				{!isMenuActivated && (
+				{!isMenuActivated ? (
 					<>
 						<h2 className={style.title}>Wybierz okres:</h2>
 						<div className={style.calendar}>
@@ -63,16 +66,15 @@ const NewMenuModal = (props: NewMenuModalProps) => {
 								locale={pl}
 							/>
 						</div>
-						<button onClick={generateMenu} className={style.btn}>
-							<BsCheck2 size={40} />
-						</button>
 					</>
+				) : (
+					<NewMenu goBack={goBack} dateArray={dateArray} />
 				)}
-				{dateArray.map((date) => (
-					
-						<MenuCard />
-					
-				))}
+				{dateArray.length > 0 && (
+					<button onClick={generateMenu} className={style.btn}>
+						<BsCheck2 size={40} />
+					</button>
+				)}
 			</Modal>
 		</>
 	);
