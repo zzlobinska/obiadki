@@ -12,6 +12,7 @@
   align-items: center;
   justify-content: center;
   animation-duration: 0.1s;
+  
 
   &.blur {
     backdrop-filter: blur(10px);
@@ -32,6 +33,11 @@
   max-height: 80vh;
   position: relative;
   animation: fadeIn 0.2s ease-out;
+  @media (max-width:1440px) {
+		padding: 1rem;
+		
+	}
+  
 
   &::-webkit-scrollbar-track {
     border-radius: 10px;
@@ -64,7 +70,8 @@
   width: 100%;
   color: $font-color-dark;
   font-weight: $font-semiBold;
-  font-size: $font-size-m;
+  font-size: $font-size-l;
+  text-transform: uppercase;
 }
 
 @keyframes fadeIn {

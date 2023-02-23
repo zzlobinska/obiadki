@@ -1,9 +1,67 @@
 @import 'src/styles';
 
 .container {
-  width: 100%;
-  @include element-flex(column);
-  padding: 50px calc(50% - 600px);
-  background: $gray-lightest-color;
-  min-height: 100vh;
+	width: 100%;
+	padding: 100px calc(50% - 600px);
+	min-height: 100vh;
+	background-image: url('../../assets/img/kitchen2.png');
+	background-size: cover;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	@media (max-width:1000px) {
+		padding: 50px;
+		text-align: center;
+	}
+	
+}
+
+.content {
+	display: flex;
+  margin-top: 100px;
+}
+
+.cta {
+	justify-content: space-between;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	gap: 200px;
+  align-items: flex-end;
+	@media (max-width:1000px) {
+		gap: 100px;
+		align-items: center;
+		
+	}
+
+}
+
+.text {
+	font-size: 46px;
+	font-weight: bold;
+	color: $main-color;
+	@media (max-width:1000px) {
+		font-size: 36px;
+		
+	}
+  
+}
+
+.btn {
+width: 300px;
+height: 70px;
+font-size: 26px;
+text-transform: uppercase;
+background-color: rgba(0, 0, 0, 0.151);
+border: 2px solid black;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.485);
+  }
+}
+
+.arrow {
+	@media (max-width:1000px) {
+		display: none;
+		
+	}
 }

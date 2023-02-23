@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import cn from 'classnames';
 
-import { Sidebar, useAppSelector } from 'components';
+import { Header, Sidebar, useAppSelector } from 'components';
 
 import style from './Page.module.scss';
 
@@ -14,14 +14,14 @@ const Page = () => {
   });
 
   return (
-    <div className={containerClasses}>
-      <Sidebar />
+    <>
+      <Header/>
       <div className={style.page}>
         <div className={style.inner}>
           <Outlet />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

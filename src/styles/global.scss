@@ -51,3 +51,11 @@ h6,
 p {
   color: $font-color-dark;
 }
+
+.rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
+  background-color: $main-color;
+}
+
+.rdp-months {
+  justify-content: center;
+}

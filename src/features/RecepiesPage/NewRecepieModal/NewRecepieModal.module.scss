@@ -1,0 +1,89 @@
+@use 'src/styles' as *;
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	margin-top: 50px;
+}
+.main {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	margin-bottom: 20px;
+	background-color: transparentize($main-color, 0.5);
+	padding: 30px 20px;
+	border-radius: 10px;
+	border: 1px solid darken($main-color, 0.5);
+	
+	
+
+}
+
+.name {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 30px;
+	
+	@media (max-width:600px) {
+		align-items: center;
+		flex-direction: column;
+		
+		
+		
+	}
+}
+
+.details {
+	display: flex;
+	gap: 60px;
+	@media (max-width:600px) {
+		gap: 10px;
+		width: 100%;
+		flex-direction: column;
+		
+	}
+}
+.wrapper {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.ingridients {
+	display: grid;
+	grid-template-columns: 70px 1fr 30px;
+	gap: 40px;
+	@media (max-width:600px) {
+		gap: 10px;
+		width: 100%;
+		grid-template-columns: 60px 1fr 10px;
+		
+	}
+}
+
+.ingridients_btn {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 16px;
+}
+.ingridient_btn {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+
+	margin-top: 22px;
+}
+
+.add {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}

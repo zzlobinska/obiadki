@@ -1,0 +1,42 @@
+.header {
+	// display: grid;
+	// grid-template-columns: repeat(3, 1fr);
+	// justify-items: center;
+    display: flex;
+    gap: 60px;
+	width: 100%;
+	margin-bottom: 100px;
+	@media (max-width:1440px) {
+		padding: 0 50px;
+		
+	}
+	@media (max-width:1000px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 30px;
+		margin-bottom: 50px;
+	}
+}
+
+.searchbar {
+	position: relative;
+    width: 100%;
+}
+
+.searchbar_icon {
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	
+}
+
+.select {
+    width: 100%;
+}
+
+.btn {
+	text-transform: uppercase;
+    min-width: 180px;
+}
