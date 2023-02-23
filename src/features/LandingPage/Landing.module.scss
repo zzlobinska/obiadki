@@ -9,6 +9,11 @@
 	justify-content: center;
 	align-items: center;
 	display: flex;
+	@media (max-width:1000px) {
+		padding: 50px;
+		text-align: center;
+	}
+	
 }
 
 .content {
@@ -23,12 +28,22 @@
 	height: 100%;
 	gap: 200px;
   align-items: flex-end;
+	@media (max-width:1000px) {
+		gap: 100px;
+		align-items: center;
+		
+	}
 
 }
 
 .text {
 	font-size: 46px;
 	font-weight: bold;
+	color: $main-color;
+	@media (max-width:1000px) {
+		font-size: 36px;
+		
+	}
   
 }
 
@@ -42,4 +57,11 @@ border: 2px solid black;
   &:hover {
     background-color: rgba(0, 0, 0, 0.485);
   }
+}
+
+.arrow {
+	@media (max-width:1000px) {
+		display: none;
+		
+	}
 }
