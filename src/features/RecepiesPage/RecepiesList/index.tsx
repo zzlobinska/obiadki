@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { db } from 'src/firebase';
+
+import { collection, getDocs } from 'firebase/firestore';
 import uuid from 'react-uuid';
 import { Modal } from 'src/components';
 import MealThumbnail from 'src/components/layout/MealThumbnail';
@@ -6,50 +9,36 @@ import NewRecepieModal from '../NewRecepieModal';
 import RecepieDetailModal from '../RecepieDetailModal';
 import style from './RecepiesList.module.scss';
 
+
+
 const RecepiesList = () => {
-	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-	const closeModal = () => {
-		setIsModalOpen(false);
+	const [recepies, setRecepies] = useState<any[]>([]);
+	
+	const fetchRecepies = async () => {
+		await getDocs(collection(db, 'recipes')).then((response) => {
+			const newData = response.docs.map((doc) => ({
+				...doc.data(),
+				id: doc.id,
+			}));
+			setRecepies(newData);
+			console.log(newData);
+		});
 	};
-	const openModal = () => {
-		setIsModalOpen(true);
-	};
-	const DUMMY_RECEPIES = [
-		{
-			title: 'nalesniki',
-			image:
-				'https://images.aws.nestle.recipes/resized/2020_02_19T16_00_53_image_708_600.ashx',
-			key: uuid(),
-		},
-		{
-			title: 'nalesniki',
-			image:
-				'https://images.aws.nestle.recipes/resized/2020_02_19T16_00_53_image_708_600.ashx',
-			key: uuid(),
-		},
-		{
-			title: 'nalesniki',
-			image:
-				'https://images.aws.nestle.recipes/resized/2020_02_19T16_00_53_image_708_600.ashx',
-			key: uuid(),
-		},
-	];
+
+	useEffect(() => {
+		fetchRecepies();
+	}, [fetchRecepies]);
+
+	
 
 	return (
 		<div className={style.recepies}>
-			{DUMMY_RECEPIES.map((recepie) => (
+			{recepies.map((recepie) => (
 				<div key={recepie.key}>
 					<MealThumbnail
-						openModal={openModal}
-						title={recepie.title}
-						image={recepie.image}
+						recepie={recepie}
 					/>
-					<RecepieDetailModal
-						closeModal={closeModal}
-						isModalOpen={isModalOpen}
-						image={recepie.image}
-						title={recepie.title}
-					/>
+					
 				</div>
 			))}
 		</div>
