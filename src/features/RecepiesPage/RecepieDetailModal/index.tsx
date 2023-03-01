@@ -1,5 +1,5 @@
 import { BsFillClockFill, BsFillPeopleFill } from 'react-icons/bs';
-import { Modal } from 'src/components';
+import { Button, Modal } from 'src/components';
 import style from './RecepieDetailModal.module.scss';
 
 export type RecepieType = {
@@ -58,6 +58,10 @@ const RecepieDetailModal = (props: NewRecepieModalProps) => {
 					<ul className={style.steps}>
 						<li className={style.step}>{description}</li>
 					</ul>
+				</div>
+				<div className={style.btns}>
+					<Button label='Edytuj Przepis'/>
+					<Button label='Usuń Przepis'/>
 				</div>
 			</div>
 		</Modal>

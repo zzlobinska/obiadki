@@ -8,37 +8,33 @@ import MealThumbnail from 'src/components/layout/MealThumbnail';
 import NewRecepieModal from '../NewRecepieModal';
 import RecepieDetailModal from '../RecepieDetailModal';
 import style from './RecepiesList.module.scss';
-
-
+import { useSearchParams } from 'react-router-dom';
+import { RecipesApi } from 'src/api';
 
 const RecepiesList = () => {
 	const [recepies, setRecepies] = useState<any[]>([]);
-	
+	const params = useSearchParams();
+
+	console.log(params);
+
 	const fetchRecepies = async () => {
-		await getDocs(collection(db, 'recipes')).then((response) => {
-			const newData = response.docs.map((doc) => ({
-				...doc.data(),
-				id: doc.id,
-			}));
-			setRecepies(newData);
-			console.log(newData);
-		});
+	
+		const {data} = await RecipesApi.getRecipes({});
+		setRecepies(data.data)
+		console.log(data);
 	};
+
+	
 
 	useEffect(() => {
 		fetchRecepies();
-	}, [fetchRecepies]);
-
-	
+	}, []);
 
 	return (
 		<div className={style.recepies}>
 			{recepies.map((recepie) => (
 				<div key={recepie.key}>
-					<MealThumbnail
-						recepie={recepie}
-					/>
-					
+					<MealThumbnail recepie={{...recepie, ...recepie.attributes}} />
 				</div>
 			))}
 		</div>

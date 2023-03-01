@@ -21,6 +21,7 @@ import style from './NewRecepieModal.module.scss';
 import { Form } from 'react-router-dom';
 import { db } from 'src/firebase';
 import { notifyDanger, notifySuccess } from 'src/components/layout/Toasts';
+import Select from 'react-select';
 
 type NewRecepieModalProps = {
 	closeModal: () => void;
@@ -56,7 +57,6 @@ const NewRecepieModal = ({
 		setIngridientsList((prev) => [...prev, newIngridient]);
 	};
 
-	console.log(ingridientsList);
 
 	const changeIngredientHandler = (ingredient: IngridientType) => {
 		setIngridientsList((prev) =>
@@ -78,6 +78,7 @@ const NewRecepieModal = ({
 		setTitle('');
 		setPortionNumber('');
 		setPrepareTime('');
+		closeModal();
 	};
 
 	const addRecipe = async (e: any) => {
@@ -106,7 +107,7 @@ const NewRecepieModal = ({
 				})),
 			});
 			notifySuccess(['Przepis został dodany.']);
-			closeModal();
+
 			clearModal();
 			console.log('Document written with ID: ', docRef.id);
 		} catch (e) {
@@ -117,7 +118,7 @@ const NewRecepieModal = ({
 	const validator = useValidator();
 
 	return (
-		<Modal title='Nowy Przepis' closeModal={closeModal} isOpen={isModalActive}>
+		<Modal title='Nowy Przepis' closeModal={clearModal} isOpen={isModalActive}>
 			<div className={style.content}>
 				<div className={style.main}>
 					<div className={style.name}>
