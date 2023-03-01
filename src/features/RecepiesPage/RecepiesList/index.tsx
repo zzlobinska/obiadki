@@ -15,13 +15,13 @@ const RecepiesList = () => {
 	const [recepies, setRecepies] = useState<any[]>([]);
 	const params = useSearchParams();
 
-	console.log(params);
+
 
 	const fetchRecepies = async () => {
 	
 		const {data} = await RecipesApi.getRecipes({});
 		setRecepies(data.data)
-		console.log(data);
+
 	};
 
 	
@@ -33,7 +33,7 @@ const RecepiesList = () => {
 	return (
 		<div className={style.recepies}>
 			{recepies.map((recepie) => (
-				<div key={recepie.key}>
+				<div key={recepie.id}>
 					<MealThumbnail recepie={{...recepie, ...recepie.attributes}} />
 				</div>
 			))}

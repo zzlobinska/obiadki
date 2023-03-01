@@ -27,7 +27,7 @@ const Ingredient = ({
 		);
 	};
 
-	console.log(ingridient.quantity);
+	
 
 	const onUnitChange = (unit: { label: string; value: string }) => {
 		changeIngredientHandler({
@@ -48,7 +48,7 @@ const Ingredient = ({
 		});
 	};
 
-	console.log(ingridient.quantity);
+
 
 	return (
 		<div className={style.ingridients}>

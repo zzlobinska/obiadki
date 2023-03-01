@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 
 import {
@@ -22,6 +22,9 @@ import { Form } from 'react-router-dom';
 import { db } from 'src/firebase';
 import { notifyDanger, notifySuccess } from 'src/components/layout/Toasts';
 import Select from 'react-select';
+import { RecipesApi } from 'src/api';
+import { CategoryType, RecepieType } from '../RecepieDetailModal';
+import Multiselect from 'src/components/layout/Multiselect';
 
 type NewRecepieModalProps = {
 	closeModal: () => void;
@@ -45,6 +48,8 @@ const NewRecepieModal = ({
 	const [portionNumber, setPortionNumber] = useState<string>('');
 	const [prepareTime, setPrepareTime] = useState<string>('');
 	const [ingridientName, setIngridientName] = useState<string>('');
+	const [categoriesList, setCategoriesList] = useState<CategoryType[]>([]);
+	const [selectedCategories, setSelectedCategories] = useState<any[]>([]);
 
 	const addIngridient = () => {
 		const newIngridient = {
@@ -56,7 +61,6 @@ const NewRecepieModal = ({
 
 		setIngridientsList((prev) => [...prev, newIngridient]);
 	};
-
 
 	const changeIngredientHandler = (ingredient: IngridientType) => {
 		setIngridientsList((prev) =>
@@ -85,7 +89,7 @@ const NewRecepieModal = ({
 		e.preventDefault();
 		if (ingridientsList.length === 0) {
 			notifyDanger(['Musisz dodać składnik.']);
-			console.log(ingridientsList.length);
+
 			return;
 		}
 		if (!validator.allValid()) {
@@ -94,22 +98,29 @@ const NewRecepieModal = ({
 		}
 
 		try {
-			const docRef = await addDoc(collection(db, 'recipes'), {
-				description: description,
-				portion_number: +portionNumber,
-				prepare_time: prepareTime,
-				thumbnail: file,
-				title: title,
-				ingredients: ingridientsList.map((ingridient) => ({
-					ingredient_name: ingridient.name,
-					ingredient_quantity: ingridient.quantity,
-					ingredient_unit: ingridient.unit?.label,
-				})),
-			});
+			const recipe: any = {
+				data: {
+					description: description,
+					portion_number: +portionNumber,
+					prepare_time: prepareTime,
+					thumbnail: file,
+					title: title,
+					ingredients: ingridientsList.map((ingridient) => ({
+						ingredient_name: ingridient.name,
+						ingredient_quantity: ingridient.quantity,
+						ingredient_unit: ingridient.unit?.label,
+					})),
+					categories: {
+						data: categoriesList,
+					},
+				},
+			};
+
+			await RecipesApi.postRecipe(recipe);
+
 			notifySuccess(['Przepis został dodany.']);
 
 			clearModal();
-			console.log('Document written with ID: ', docRef.id);
 		} catch (e) {
 			console.error('Error adding document: ', e);
 		}
@@ -158,6 +169,14 @@ const NewRecepieModal = ({
 							/>
 						</div>
 					</div>
+					<Multiselect
+						value={selectedCategories}
+						onChange={setSelectedCategories}
+						options={[
+							{ label: 'mleko1', value: 'mleko1' },
+							{ label: 'mleko2', value: 'mleko2' },
+						]}
+					/>
 				</div>
 				<div className={style.add}>
 					<button onClick={addIngridient} className={style.ingridients_btn}>

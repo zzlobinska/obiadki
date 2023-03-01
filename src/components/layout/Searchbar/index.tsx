@@ -22,7 +22,7 @@ const Searchbar = () => {
 		return () => clearTimeout(timer);
 	}, [searchedValue]);
 
-	console.log(searchParams);
+	
 
 	return (
 		<div className={style.searchbar}>
