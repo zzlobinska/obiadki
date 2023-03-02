@@ -3,7 +3,7 @@ import { BsX } from 'react-icons/bs';
 import { Input } from 'src/components';
 import Select from 'src/components/layout/InputSelect';
 import { IngridientType } from '..';
-import style from '../NewRecepieModal.module.scss';
+import style from '../NewRecipeModal.module.scss';
 import { quantityOptions } from 'src/constans/misc';
 
 type IngridientPropsType = {

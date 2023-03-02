@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { sidebarSlice } from 'components/layout/Sidebar/slice';
 
 import { authSlice } from 'src/features/onboarding/slice';
+import { RecipesListSlice } from 'src/features/RecipesPage/slice';
 
 const store = configureStore({
-  reducer: {
-    auth: authSlice.reducer,
-    sidebar: sidebarSlice.reducer
-  }
+	reducer: {
+		auth: authSlice.reducer,
+		sidebar: sidebarSlice.reducer,
+		recipesList: RecipesListSlice.reducer,
+	},
 });
 
 export default store;

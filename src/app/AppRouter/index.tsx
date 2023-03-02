@@ -7,7 +7,7 @@ import { Page, ScrollToTop } from 'components';
 import Landing from 'src/features/LandingPage';
 import ErrorPage from 'src/features/NotFoundRoute';
 import Library from 'features/Library';
-import RecepiesPage from 'src/features/RecepiesPage';
+import RecipesPage from 'src/features/RecipesPage';
 import MenuPage from 'src/features/MenuPage';
 
 const RouterComponents = () => (
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
 					},
 					{
 						path: '/przepisy',
-						element: <RecepiesPage />,
+						element: <RecipesPage />,
 					},
 					{
 						path: '/jadlospisy',
