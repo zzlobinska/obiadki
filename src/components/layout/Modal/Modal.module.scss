@@ -27,13 +27,13 @@
   background-color: white;
   padding: $spacing-8;
   width: 100%;
-  max-width: 505px;
+  max-width: 705px;
   animation-duration: 0.1s;
   overflow: auto;
   max-height: 80vh;
   position: relative;
   animation: fadeIn 0.2s ease-out;
-  @media (max-width:1440px) {
+  @media (max-width:440px) {
 		padding: 1rem;
 		
 	}

@@ -5,7 +5,7 @@ import style from './MenuHeader.module.scss';
 import NewMenuModal from './NewMenuModal';
 
 const MenuHeader = () => {
-	const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const openModal = () => {
 		setIsModalOpen(true);
 	};

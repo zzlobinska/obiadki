@@ -22,6 +22,17 @@
 	text-align: center;
 }
 
+.categories {
+	display: flex;
+	gap: 10px;
+}
+
+.category {
+	border: 1px solid $main-color;
+	border-radius: 5px;
+	padding: 10px;
+}
+
 .details {
 	width: 100%;
 	display: flex;
@@ -35,11 +46,11 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	
 }
 
 .recipe {
 	margin-top: 30px;
+	padding: 20px;
 	&__title {
 		text-transform: uppercase;
 		font-weight: normal;
@@ -68,4 +79,11 @@
 
 .step {
 	list-style-type: decimal;
+}
+
+.btns {
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+	gap: 70px;
 }

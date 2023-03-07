@@ -7,7 +7,7 @@ import InputWrapper, {
 	InnerWrapperProps,
 } from 'components/layout/InputWrapper';
 
-import { selectStyles } from './styles';
+import { selectStyles } from '../InputSelect/styles';
 
 type OptionType = {
 	label: string;
@@ -16,11 +16,8 @@ type OptionType = {
 
 interface SelectProps extends InnerWrapperProps {
 	options: any;
-	value: OptionType | null;
-	onChange: (x: {
-		value: string;
-		label: string;
-	}) => void | Dispatch<
+	value: OptionType[];
+	onChange: (x: OptionType[]) => void | Dispatch<
 		SetStateAction<{ value: string; label: string } | null>
 	>;
 	wrapperStyle?: string;
@@ -35,7 +32,7 @@ interface SelectProps extends InnerWrapperProps {
 	isClearable?: boolean;
 }
 
-const Select = (props: SelectProps) => {
+const Multiselect = (props: SelectProps) => {
 	const {
 		wrapperStyle,
 		noOptionsMessage = 'Brak wyników',
@@ -55,6 +52,7 @@ const Select = (props: SelectProps) => {
 		<InputWrapper {...wrapperProps}>
 			<div className={wrapperStyle}>
 				<ReactSelect
+					isMulti
 					placeholder={placeholder}
 					menuPlacement={'auto'}
 					onChange={onChange as any}
@@ -75,4 +73,4 @@ const Select = (props: SelectProps) => {
 	);
 };
 
-export default Select;
+export default Multiselect;

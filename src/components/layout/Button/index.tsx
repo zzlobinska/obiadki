@@ -23,6 +23,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   height?: string;
   width?: string;
   reverse?: boolean;
+  red?: boolean;
 };
 
 const ButtonWrapper: React.FC<ButtonProps> = (props) => {
@@ -39,6 +40,7 @@ const ButtonWrapper: React.FC<ButtonProps> = (props) => {
     gray = false,
     white = false,
     empty = false,
+    red = false,
     form,
     id,
     title
@@ -48,7 +50,8 @@ const ButtonWrapper: React.FC<ButtonProps> = (props) => {
     [style.isLoading]: isLoading,
     [style.empty]: empty,
     [style.gray]: gray,
-    [style.white]: white
+    [style.white]: white,
+    [style.red]: red
   });
 
   const handleOnClick = (
