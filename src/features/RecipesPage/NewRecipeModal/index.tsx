@@ -66,7 +66,7 @@ const NewRecipeModal = ({
 	recipe,
 	closeModal,
 	isModalActive,
-	editRecipe
+	editRecipe,
 }: NewRecipeModalProps) => {
 	const [file, setFile] = useState<string>(recipe?.thumbnail || '');
 	const [ingridientsList, setIngridientsList] = useState<IngridientType[]>(
@@ -88,9 +88,7 @@ const NewRecipeModal = ({
 		getCategories(recipe) || []
 	);
 
-	
 
-	console.log(recipe);
 
 	const dispatch = useDispatch();
 
@@ -116,8 +114,6 @@ const NewRecipeModal = ({
 			})
 		);
 	};
-
-	
 
 	const addRecipe = async (e: any) => {
 		e.preventDefault();
@@ -149,7 +145,6 @@ const NewRecipeModal = ({
 			};
 			if (recipe?.id) {
 				await RecipesApi.putRecipe(recipe.id, queryData);
-				
 			} else {
 				await RecipesApi.postRecipe(queryData);
 				notifySuccess(['Przepis został dodany.']);
@@ -170,10 +165,10 @@ const NewRecipeModal = ({
 		setCategoriesList(
 			data.data.filter((cat: any) => cat.attributes.parent.data)
 		);
-		console.log(data);
+		
 	};
 
-	console.log('categoriesList', categoriesList);
+	
 
 	useEffect(() => {
 		fetchCategories();
@@ -226,6 +221,7 @@ const NewRecipeModal = ({
 					</div>
 				</div>
 				<Multiselect
+					label='Kategorie'
 					value={selectedCategories}
 					onChange={setSelectedCategories}
 					options={options}

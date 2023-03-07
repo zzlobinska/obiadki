@@ -7,6 +7,7 @@ import { notifyApiError, notifySuccess } from 'src/components/layout/Toasts';
 import NewRecipeModal from '../NewRecipeModal';
 import { changeVersion } from '../slice';
 import style from './RecipeDetailModal.module.scss';
+import placeholder from '../../../assets/img/placeholder.png';
 
 export type CategoryType = {
 	id: number;
@@ -39,7 +40,7 @@ const RecipeDetailModal = (props: NewRecipeModalProps) => {
 		useState<boolean>(false);
 
 	const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
-	const[editRecipe, setEditRecipe] = useState<boolean>(false)
+	const [editRecipe, setEditRecipe] = useState<boolean>(false);
 	const {
 		thumbnail,
 		description,
@@ -69,7 +70,7 @@ const RecipeDetailModal = (props: NewRecipeModalProps) => {
 
 	const editModal = () => {
 		setIsEditModalOpen(true);
-		setEditRecipe(true)
+		setEditRecipe(true);
 	};
 
 	const closeEditModal = () => {
@@ -80,7 +81,14 @@ const RecipeDetailModal = (props: NewRecipeModalProps) => {
 		<>
 			<Modal closeModal={props.closeModal} isOpen={props.isModalOpen}>
 				<div className={style.content}>
-					<img className={style.image} src={thumbnail} />
+					<img
+						className={style.image}
+						src={thumbnail}
+						onError={({ currentTarget }) => {
+							currentTarget.onerror = null;
+							currentTarget.src = placeholder;
+						}}
+					/>
 					<h2 className={style.title}>{title}</h2>
 					<div className={style.categories}>
 						{category.map((cat) => (
@@ -129,7 +137,7 @@ const RecipeDetailModal = (props: NewRecipeModalProps) => {
 				isOpen={isEditModalOpen}
 			>
 				<NewRecipeModal
-				editRecipe={editRecipe}
+					editRecipe={editRecipe}
 					recipe={props.recipe}
 					closeModal={closeEditModal}
 					isModalActive={isEditModalOpen}
