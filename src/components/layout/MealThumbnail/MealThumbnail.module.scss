@@ -1,0 +1,21 @@
+.container {
+	display: flex;
+	flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.image {
+	height: 200px;
+	width: 200px;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+}
