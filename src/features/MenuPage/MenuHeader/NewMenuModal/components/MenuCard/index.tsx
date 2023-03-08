@@ -1,6 +1,7 @@
-import classNames from 'classnames';
 import { useState } from 'react';
 import { BsArrowUpLeftSquare, BsDice3, BsPlusSquare, BsXSquare } from 'react-icons/bs';
+import classNames from 'classnames';
+
 import style from './MenuCard.module.scss';
 
 type MenuCardProps = {
@@ -17,7 +18,7 @@ const MenuCard = (props: MenuCardProps) => {
 	});
 	const disabledBtnClass = classNames(style.generator__btn, {
 		[style.disabled]: !isDayActive,
-	})
+	});
 	return (
 		<div className={style.row}>
 			<div className={style.date}>

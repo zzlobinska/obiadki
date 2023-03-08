@@ -52,6 +52,7 @@
     "@typescript-eslint/ban-ts-comment": "off",
     "no-prototype-builtins": "warn",
     "react/react-in-jsx-scope": "off",
+    "unicorn/prefer-add-event-listener": "off",
     "sonarjs/cognitive-complexity": "off",
     "unicorn/consistent-destructuring": "warn",
     "security/detect-unsafe-regex": "off",

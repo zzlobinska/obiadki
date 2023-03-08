@@ -1,4 +1,5 @@
 import { BsFillReplyFill } from 'react-icons/bs';
+
 import MenuCard from '../MenuCard';
 
 import style from '../../NewMenuModal.module.scss';
@@ -8,7 +9,7 @@ type NewMenuProps = {
 	goBack: () => void;
 };
 
-const NewMenu = ({dateArray, goBack}: NewMenuProps) => {
+const NewMenu = ({ dateArray, goBack }: NewMenuProps) => {
 	
 	return (
 		<>

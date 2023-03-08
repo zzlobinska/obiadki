@@ -1,4 +1,5 @@
 import { InitOptions } from 'i18next';
+
 import { commonEN, commonPL } from './locales';
 
 const resources = {

@@ -1,13 +1,16 @@
-import { Modal } from 'src/components';
 import { useEffect, useState } from 'react';
-import { DayPicker, DateRange } from 'react-day-picker';
-import 'react-day-picker/dist/style.css';
-import { addDays } from 'date-fns';
-import style from './NewMenuModal.module.scss';
+import { DateRange,DayPicker } from 'react-day-picker';
 import { BsCheck2, BsFillReplyFill, BsPlusSquare } from 'react-icons/bs';
-import { pl } from 'date-fns/locale';
+import { addDays } from 'date-fns';
 import { eachDayOfInterval } from 'date-fns';
+import { pl } from 'date-fns/locale';
+
+import { Modal } from 'src/components';
+
 import NewMenu from './components/NewMenu';
+
+import 'react-day-picker/dist/style.css';
+import style from './NewMenuModal.module.scss';
 
 type NewMenuModalProps = {
 	isModalOpen: boolean;
@@ -36,7 +39,7 @@ const NewMenuModal = (props: NewMenuModalProps) => {
 
 	const closeModalHandler = () => {
 		props.closeModal();
-		setRange(undefined);
+		setRange();
 		setIsMenuActivated(false);
 	};
 

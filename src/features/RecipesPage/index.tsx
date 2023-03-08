@@ -1,7 +1,8 @@
 
-import style from './Recipes.module.scss';
-import RecipesList from './RecipesList';
 import RecipesHeader from './RecipesHeader';
+import RecipesList from './RecipesList';
+
+import style from './Recipes.module.scss';
 
 
 const RecipesPage = () => {

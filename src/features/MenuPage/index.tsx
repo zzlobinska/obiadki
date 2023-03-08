@@ -1,4 +1,5 @@
 import MenuHeader from './MenuHeader';
+
 import style from './MenuPage.module.scss';
 
 const MenuPage = () => {

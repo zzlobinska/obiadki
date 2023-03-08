@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { BsPlusSquare } from 'react-icons/bs';
+
 import { Modal } from 'src/components';
-import style from './MenuHeader.module.scss';
+
 import NewMenuModal from './NewMenuModal';
+
+import style from './MenuHeader.module.scss';
 
 const MenuHeader = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

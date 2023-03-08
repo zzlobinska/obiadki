@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useSearchParams } from 'react-router-dom';
+
 import { Input } from 'src/components';
+
 import style from './Searchbar.module.scss';
 
 const Searchbar = () => {
@@ -16,7 +18,7 @@ const Searchbar = () => {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			let params = { ...(searchedValue && { search: searchedValue }) };
+			const params = { ...(searchedValue && { search: searchedValue }) };
 			setSearchParams(params);
 		}, 400);
 		return () => clearTimeout(timer);

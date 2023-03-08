@@ -5,10 +5,10 @@ import { Page, ScrollToTop } from 'components';
 
 //features
 import Landing from 'src/features/LandingPage';
-import ErrorPage from 'src/features/NotFoundRoute';
-import Library from 'features/Library';
-import RecipesPage from 'src/features/RecipesPage';
 import MenuPage from 'src/features/MenuPage';
+import ErrorPage from 'src/features/NotFoundRoute';
+import RecipesPage from 'src/features/RecipesPage';
+import Library from 'features/Library';
 
 const RouterComponents = () => (
 	<>

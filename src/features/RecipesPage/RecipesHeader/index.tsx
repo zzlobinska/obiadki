@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import {
 	BsArrowDownShort,
-	BsSearch,
-	BsFillPeopleFill,
 	BsFillClockFill,
+	BsFillPeopleFill,
+	BsSearch,
 } from 'react-icons/bs';
+
 import { Button, Input, InputSelect, Modal, Textarea } from 'src/components';
 import Searchbar from 'src/components/layout/Searchbar';
+
 import NewRecipeModal from '../NewRecipeModal';
+
 import style from './RecipesHeader.module.scss';
 
 const RecipesHeader = () => {

@@ -1,9 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'src/components';
-import style from './Landing.module.scss';
-import arrow from '../../assets/img/arrow.png';
 import { Link } from 'react-router-dom';
+
+import { Button } from 'src/components';
+
+import style from './Landing.module.scss';
+
+import arrow from '../../assets/img/arrow.png';
 
 const Landing = () => {
 	const { t } = useTranslation();
