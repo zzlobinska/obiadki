@@ -99,3 +99,13 @@
 	cursor: auto;
 	font-weight: normal;
 }
+
+.randomMenu {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	&__btn {
+		background-color: transparent;
+		cursor: pointer;
+	}
+}

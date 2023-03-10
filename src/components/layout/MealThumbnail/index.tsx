@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import classNames from 'classnames';
 
 import RecipeDetailModal, {
   RecipeType
@@ -10,9 +11,10 @@ import placeholder from '../../../assets/img/placeholder.png';
 
 type MealThumbnailProps = {
   recipe: RecipeType;
+  randomRecipe?: boolean;
 };
 
-const MealThumbnail = ({ recipe }: MealThumbnailProps) => {
+const MealThumbnail = ({ recipe, randomRecipe }: MealThumbnailProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const closeModal = () => {
     setIsModalOpen(false);
@@ -23,7 +25,12 @@ const MealThumbnail = ({ recipe }: MealThumbnailProps) => {
 
   return (
     <>
-      <button onClick={openModal} className={style.container}>
+      <button
+        onClick={openModal}
+        className={classNames(style.container, {
+          [style.container_menu]: randomRecipe
+        })}
+      >
         <img
           alt='a thumbnail of meals recipe'
           src={recipe.thumbnail || placeholder}
