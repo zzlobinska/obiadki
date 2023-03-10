@@ -26,7 +26,7 @@ type NewRecipeModalProps = {
   closeModal: () => void;
   isModalActive: boolean;
   recipe?: RecipeType;
-  editRecipe: boolean;
+  editRecipe?: boolean;
 };
 export type IngridientType = {
   quantity: number | undefined;

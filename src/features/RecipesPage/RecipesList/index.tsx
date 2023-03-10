@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 import { RecipesApi } from 'src/api';
 import { Loader } from 'src/components';
@@ -16,6 +17,7 @@ const RecipesList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
 
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const version = useSelector((state: RootState) => state.recipesList.version);
 

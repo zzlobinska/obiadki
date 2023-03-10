@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import {
   BsArrowUpLeftSquare,
   BsDice3,
@@ -15,14 +15,16 @@ import style from './MenuCard.module.scss';
 
 type MenuCardProps = {
   day: Date;
+  key: string;
 };
 
 const MenuCard = (props: MenuCardProps) => {
   const [isDayActive, setIsDayActive] = useState<boolean>(true);
   const [menuRecipes, setMenuRecipes] = useState<RecipeType[]>([]);
-  const [randomRecipe, setRandomRecipe] = useState<RecipeType>();
+  const [randomRecipe, setRandomRecipe] = useState<RecipeType | null>();
   const disableDay = () => {
     setIsDayActive((prev) => !prev);
+    getBack();
   };
   const disabledTextClass = classNames(style.generator__txt, {
     [style.disabled]: !isDayActive
@@ -58,6 +60,10 @@ const MenuCard = (props: MenuCardProps) => {
     console.log(recipeData.data[0]);
 
     console.log(randomRecipe);
+  };
+
+  const getBack = () => {
+    setRandomRecipe(null);
   };
 
   return (
@@ -104,7 +110,7 @@ const MenuCard = (props: MenuCardProps) => {
           <>
             <MealThumbnail randomRecipe recipe={randomRecipe} />
             <div className={style.randomMenu}>
-              <button className={style.randomMenu__btn}>
+              <button onClick={getBack} className={style.randomMenu__btn}>
                 <BsArrowUpLeftSquare size={30} />
               </button>
               <button
