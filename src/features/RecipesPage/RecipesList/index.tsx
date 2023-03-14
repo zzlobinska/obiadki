@@ -18,15 +18,25 @@ const RecipesList = () => {
   const [page, setPage] = useState<number>(1);
 
   const [searchParams, setSearchParams] = useSearchParams();
-
+  console.log(searchParams.get('category'));
   const version = useSelector((state: RootState) => state.recipesList.version);
 
-  const fetchRecipes = async () => {
+  const fetchRecipes = async (resetPage?: number) => {
     setIsLoading(true);
     const query = {
       pagination: {
-        page,
-        pageSize: 10
+        page: resetPage || page,
+        pageSize: 8
+      },
+      filters: {
+        title: {
+          $contains: searchParams.get('search')
+        },
+        categories: {
+          name: {
+            $contains: searchParams.get('category')
+          }
+        }
       }
     };
     const { data } = await RecipesApi.getRecipes(query);
@@ -37,16 +47,19 @@ const RecipesList = () => {
 
   const getMorePost = async () => {
     setPage(page + 1);
-    const recipesFromServer = await fetchRecipes();
+    const recipesFromServer = await fetchRecipes(page + 1);
     setRecipes([...recipes, ...recipesFromServer]);
-    if (recipesFromServer.length === 0 || recipesFromServer.length < 20) {
+    if (recipesFromServer.length === 0) {
       setHasMore(false);
     }
+    console.log('dupa');
   };
 
   useEffect(() => {
-    fetchRecipes();
-  }, [version]);
+    setPage(1);
+    fetchRecipes(1);
+    setHasMore(true);
+  }, [version, searchParams]);
 
   return (
     <>

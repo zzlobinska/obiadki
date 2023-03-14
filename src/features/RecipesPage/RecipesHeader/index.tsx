@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { MeiliSearch } from 'meilisearch';
 
 import { Button, InputSelect, Modal } from 'src/components';
+import FilterByCategory from 'src/components/layout/FilterByCategory';
 import Searchbar from 'src/components/layout/Searchbar';
 
 import NewRecipeModal from '../NewRecipeModal';
@@ -15,9 +17,10 @@ const RecipesHeader = () => {
   const openModal = () => {
     setIsModalActive(true);
   };
+
   return (
     <header className={style.header}>
-      <InputSelect wrapperStyle={style.select} />
+      <FilterByCategory />
       <Searchbar />
       <div className={style.add_recipe}>
         <Button
