@@ -22,10 +22,20 @@ const pastMonth = new Date();
 const NewMenuModal = (props: NewMenuModalProps) => {
 	const [range, setRange] = useState<DateRange | undefined>();
 	const [isMenuActivated, setIsMenuActivated] = useState<boolean>(false);
+	const [selectedMeals, setSelectedMeals] = useState<any[]>([]);
+
 	const defaultSelected: DateRange = {
 		from: pastMonth,
 		to: addDays(pastMonth, 4),
 	};
+
+	const onMealSelect = (meal: any) => {
+		setSelectedMeals(prev => ([
+			prev.filter(item => item.id !== meal.id),
+			meal
+		]))
+	}
+
 	const start = range?.from ? new Date(range?.from) : '';
 	const end = range?.to ? new Date(range.to) : '';
 
@@ -39,7 +49,6 @@ const NewMenuModal = (props: NewMenuModalProps) => {
 
 	const closeModalHandler = () => {
 		props.closeModal();
-		setRange();
 		setIsMenuActivated(false);
 	};
 

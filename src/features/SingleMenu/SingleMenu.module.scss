@@ -1,0 +1,26 @@
+@import 'src/styles';
+
+.main {
+  padding: 250px calc(50% - 670px);
+  min-height: 100vh;
+  background-color: $main-color;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  justify-content: space-between;
+}
+
+.title {
+  color: $darker-main-color;
+  text-transform: uppercase;
+  font-size: 36px;
+}
+
+.return {
+  background-color: transparent;
+  cursor: pointer;
+  color: $darker-main-color;
+}

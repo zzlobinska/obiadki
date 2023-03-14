@@ -54,6 +54,7 @@
     "react-uuid": "^2.0.0",
     "redux-devtools-extension": "^2.13.9",
     "simple-react-validator": "^1.6.2",
+    "strapi-plugin-populate-deep": "^2.0.0",
     "validate-polish": "^2.0.40",
     "vite-plugin-svgr": "^2.2.2"
   },

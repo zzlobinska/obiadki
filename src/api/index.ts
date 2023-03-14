@@ -1,5 +1,10 @@
 import ApiClient from 'src/api/client.js';
-import { CategoriesRoutes, RecipesRoutes, TestRoutes } from 'src/api/routes';
+import {
+  CategoriesRoutes,
+  MenusRoutes,
+  RecipesRoutes,
+  TestRoutes
+} from 'src/api/routes';
 
 export const TestApi = {
   getRandomUsers(params: object) {
@@ -10,6 +15,7 @@ export const RecipesApi = {
   getRecipes(params?: object) {
     return ApiClient.get(RecipesRoutes.GET_RECIPES, params);
   },
+  
   postRecipe(data: object) {
     return ApiClient.post(RecipesRoutes.POST_RECIPE, data, {
       __tokenRequired: false
@@ -26,6 +32,15 @@ export const RecipesApi = {
 export const CategoriesApi = {
   getCategories(params: object) {
     return ApiClient.get(CategoriesRoutes.GET_CATEGORIES, params);
+  }
+};
+
+export const MenusApi = {
+  getMenus(params: object) {
+    return ApiClient.get(MenusRoutes.GET_MENUS, params);
+  },
+  getMenu(id: string, params?: object) {
+    return ApiClient.get(MenusRoutes.GET_MENU(id), params);
   }
 };
 

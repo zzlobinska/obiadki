@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
-import { MeiliSearch } from 'meilisearch';
+import {  useState } from 'react';
 
-import { Button, InputSelect, Modal } from 'src/components';
+import { Button, Modal } from 'src/components';
 import FilterByCategory from 'src/components/layout/FilterByCategory';
 import Searchbar from 'src/components/layout/Searchbar';
 

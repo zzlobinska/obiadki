@@ -1,4 +1,4 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import {
   BsArrowUpLeftSquare,
   BsDice3,
@@ -16,19 +16,28 @@ import style from './MenuCard.module.scss';
 type MenuCardProps = {
   day: Date;
   key: string;
+  ready?: boolean;
+  recipe?: any;
 };
 
+const getFormattedRecipe = (recipe: any) => ({
+  ...recipe,
+  ...recipe?.attributes
+});
+
 const MenuCard = (props: MenuCardProps) => {
+  console.log(props.recipe);
   const [isDayActive, setIsDayActive] = useState<boolean>(true);
-  const [menuRecipes, setMenuRecipes] = useState<RecipeType[]>([]);
-  const [randomRecipe, setRandomRecipe] = useState<RecipeType | null>();
+  const [randomRecipe, setRandomRecipe] = useState<RecipeType | null>(
+    props.ready && getFormattedRecipe(props.recipe)
+  );
+
   const disableDay = () => {
     setIsDayActive((prev) => !prev);
     getBack();
   };
-  const disabledTextClass = classNames(style.generator__txt, {
-    [style.disabled]: !isDayActive
-  });
+
+  const disabledTextClass = classNames(style.generator__txt, {});
   const disabledBtnClass = classNames(style.generator__btn, {
     [style.disabled]: !isDayActive
   });
@@ -42,7 +51,6 @@ const MenuCard = (props: MenuCardProps) => {
     };
     const { data } = await RecipesApi.getRecipes(totalQuery);
     const recipesTotal = data.meta.pagination.total;
-    setMenuRecipes(data.data);
     const randomRecipeNumber = Math.floor(Math.random() * recipesTotal);
 
     const query = {
@@ -56,10 +64,6 @@ const MenuCard = (props: MenuCardProps) => {
       ...recipeData.data[0],
       ...recipeData.data[0].attributes
     });
-
-    console.log(recipeData.data[0]);
-
-    console.log(randomRecipe);
   };
 
   const getBack = () => {
@@ -70,8 +74,8 @@ const MenuCard = (props: MenuCardProps) => {
     <div className={style.row}>
       <div className={style.date}>
         <button onClick={disableDay} className={style.date__btn}>
-          {isDayActive && <BsXSquare size={20} />}
-          {!isDayActive && <BsArrowUpLeftSquare size={20} />}
+          {!props.ready && isDayActive && <BsXSquare size={20} />}
+          {!props.ready && !isDayActive && <BsArrowUpLeftSquare size={20} />}
         </button>
         <div className={style.date__text}>
           <p
@@ -109,17 +113,19 @@ const MenuCard = (props: MenuCardProps) => {
         ) : (
           <>
             <MealThumbnail randomRecipe recipe={randomRecipe} />
-            <div className={style.randomMenu}>
-              <button onClick={getBack} className={style.randomMenu__btn}>
-                <BsArrowUpLeftSquare size={30} />
-              </button>
-              <button
-                onClick={fetchMenuRecipes}
-                className={style.randomMenu__btn}
-              >
-                <BsDice3 size={30} />
-              </button>
-            </div>
+            {!props.ready && (
+              <div className={style.randomMenu}>
+                <button onClick={getBack} className={style.randomMenu__btn}>
+                  <BsArrowUpLeftSquare size={30} />
+                </button>
+                <button
+                  onClick={fetchMenuRecipes}
+                  className={style.randomMenu__btn}
+                >
+                  <BsDice3 size={30} />
+                </button>
+              </div>
+            )}
           </>
         )}
       </div>

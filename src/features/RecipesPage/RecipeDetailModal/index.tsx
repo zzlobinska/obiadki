@@ -13,7 +13,7 @@ import style from './RecipeDetailModal.module.scss';
 
 import placeholder from '../../../assets/img/placeholder.png';
 
-export interface CategoryType  {
+export interface CategoryType {
   id: number;
   attributes: {
     name: string;
@@ -21,12 +21,12 @@ export interface CategoryType  {
       data: CategoryType;
     };
   };
-};
+}
 
-export interface SelectedCategoryType extends CategoryType{
+export interface SelectedCategoryType extends CategoryType {
   label: string;
   value: number;
-};
+}
 
 export type ServerIngridientType = {
   ingredient_name: string;
@@ -67,7 +67,7 @@ const RecipeDetailModal = (props: NewRecipeModalProps) => {
     categories,
     id
   } = props.recipe;
-  const category = categories.data;
+  const category = categories?.data || [];
 
   const dispatch = useDispatch();
 
