@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import {
   BsArrowUpLeftSquare,
   BsDice3,
@@ -18,6 +19,8 @@ type MenuCardProps = {
   key: string;
   ready?: boolean;
   recipe?: any;
+  onMealSelect?: (data: { date: Date; recipe: number; id: string }) => void;
+  id: string;
 };
 
 const getFormattedRecipe = (recipe: any) => ({
@@ -51,7 +54,7 @@ const MenuCard = (props: MenuCardProps) => {
     };
     const { data } = await RecipesApi.getRecipes(totalQuery);
     const recipesTotal = data.meta.pagination.total;
-    const randomRecipeNumber = Math.floor(Math.random() * recipesTotal);
+    const randomRecipeNumber = Math.floor(Math.random() * recipesTotal + 1);
 
     const query = {
       pagination: {
@@ -66,9 +69,21 @@ const MenuCard = (props: MenuCardProps) => {
     });
   };
 
+  useEffect(() => {
+    if (randomRecipe && props.onMealSelect) {
+      props.onMealSelect({
+        date: props.day,
+        recipe: randomRecipe.id,
+        id: props.id
+      });
+    }
+  }, [randomRecipe]);
+
   const getBack = () => {
     setRandomRecipe(null);
   };
+
+  console.log('randomRecipe', randomRecipe);
 
   return (
     <div className={style.row}>

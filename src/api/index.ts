@@ -15,7 +15,7 @@ export const RecipesApi = {
   getRecipes(params?: object) {
     return ApiClient.get(RecipesRoutes.GET_RECIPES, params);
   },
-  
+
   postRecipe(data: object) {
     return ApiClient.post(RecipesRoutes.POST_RECIPE, data, {
       __tokenRequired: false
@@ -41,6 +41,11 @@ export const MenusApi = {
   },
   getMenu(id: string, params?: object) {
     return ApiClient.get(MenusRoutes.GET_MENU(id), params);
+  },
+  postMenu(data: object) {
+    return ApiClient.post(MenusRoutes.POST_MENU, data, {
+      __tokenRequired: false
+    });
   }
 };
 

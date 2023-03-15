@@ -12,7 +12,8 @@ export const CategoriesRoutes = {
 };
 export const MenusRoutes = {
   GET_MENUS: '/menus?populate=*',
-  GET_MENU: (id: string) => `/menus/${id}?populate=deep`
+  GET_MENU: (id: string) => `/menus/${id}?populate=deep`,
+  POST_MENU: '/menus'
 };
 
 export const AccountsRoutes = {};
