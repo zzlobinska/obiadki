@@ -8,24 +8,25 @@ import NewMenuModal from './NewMenuModal';
 import style from './MenuHeader.module.scss';
 
 const MenuHeader = () => {
-	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-	const openModal = () => {
-		setIsModalOpen(true);
-	};
-	const closeModal = () => {
-		setIsModalOpen(false);
-		
-	};
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
-	return (
-		<div className={style.header}>
-			<h2 className={style.title}>moje jadłospisy</h2>
-			<button onClick={openModal} className={style.btn}>
-				<BsPlusSquare size={40} />
-			</button>
-			<NewMenuModal isModalOpen={isModalOpen} closeModal={closeModal} />
-		</div>
-	);
+  return (
+    <div className={style.header}>
+      <h2 className={style.title}>moje jadłospisy</h2>
+      <button onClick={openModal} className={style.btn}>
+        <BsPlusSquare size={40} />
+      </button>
+      <Modal title={'przygotuj jadłospis'} isOpen={isModalOpen} closeModal={closeModal}>
+        <NewMenuModal isModalOpen={isModalOpen} closeModal={closeModal} />
+      </Modal>
+    </div>
+  );
 };
 
 export default MenuHeader;

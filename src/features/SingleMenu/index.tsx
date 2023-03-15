@@ -46,7 +46,9 @@ const SingleMenu = () => {
       </div>
       {menu?.attributes?.days?.map((day: any) => (
         <MenuCard
+          id={day.id}
           ready
+          isDisabled={day.isDisabled}
           day={new Date(day.date)}
           key={day.date}
           recipe={day.recipe.data}

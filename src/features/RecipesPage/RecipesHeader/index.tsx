@@ -1,4 +1,5 @@
-import {  useState } from 'react';
+import { useState } from 'react';
+import classNames from 'classnames';
 
 import { Button, Modal } from 'src/components';
 import FilterByCategory from 'src/components/layout/FilterByCategory';
@@ -8,7 +9,11 @@ import NewRecipeModal from '../NewRecipeModal';
 
 import style from './RecipesHeader.module.scss';
 
-const RecipesHeader = () => {
+type RecipesHeaderProps = {
+  inModal: boolean
+}
+
+const RecipesHeader = ({ inModal }: RecipesHeaderProps) => {
   const [isModalActive, setIsModalActive] = useState(false);
   const closeModal = () => {
     setIsModalActive(false);
@@ -21,7 +26,11 @@ const RecipesHeader = () => {
     <header className={style.header}>
       <FilterByCategory />
       <Searchbar />
-      <div className={style.add_recipe}>
+      <div
+        className={classNames(style.add_recipe, {
+          [style.inModal]: inModal
+        })}
+      >
         <Button
           onClick={openModal}
           className={style.btn}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useMemo } from 'react';
 import { DateRange, DayPicker } from 'react-day-picker';
 import { BsCheck2, BsFillReplyFill, BsPlusSquare } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
 import { addDays } from 'date-fns';
 import { eachDayOfInterval } from 'date-fns';
@@ -9,7 +10,9 @@ import { pl } from 'date-fns/locale';
 
 import { MenusApi } from 'src/api';
 import { Modal } from 'src/components';
+import { notifyDanger, notifySuccess } from 'src/components/layout/Toasts';
 
+import { changeVersion } from '../../slice';
 import NewMenu from './components/NewMenu';
 
 import 'react-day-picker/dist/style.css';
@@ -27,6 +30,8 @@ const NewMenuModal = (props: NewMenuModalProps) => {
   const [isMenuActivated, setIsMenuActivated] = useState<boolean>(false);
   const [selectedMeals, setSelectedMeals] = useState<any[]>([]);
 
+  const dispatch = useDispatch();
+
   const defaultSelected: DateRange = {
     from: pastMonth,
     to: addDays(pastMonth, 4)
@@ -42,7 +47,19 @@ const NewMenuModal = (props: NewMenuModalProps) => {
   };
 
   const postMenu = async () => {
-    console.log('selectedMeals', selectedMeals);
+    if (
+      selectedMeals?.filter((meal) => !meal.recipe && !meal.isDisabled).length >
+      0
+    ) {
+      notifyDanger(['Wybierz przepis lub oznacz dzień jako bezprzepisowy.']);
+      return;
+    }
+    console.log(
+      'cipelunka',
+      selectedMeals?.filter(
+        (meal) => !meal.recipe || (meal.recipe && !meal.isDisabled)
+      ).length
+    );
     const data = {
       data: {
         name: title,
@@ -52,11 +69,11 @@ const NewMenuModal = (props: NewMenuModalProps) => {
         }))
       }
     };
-    console.log('DUPA DUPA', data);
     await MenusApi.postMenu(data);
+    dispatch(changeVersion());
+    notifySuccess(['Przepis został dodany.']);
+    closeModalHandler();
   };
-
-  console.log(selectedMeals);
 
   const start = range?.from ? new Date(range?.from) : '';
   const end = range?.to ? new Date(range.to) : '';
@@ -74,11 +91,16 @@ const NewMenuModal = (props: NewMenuModalProps) => {
       start && end ? eachDayOfInterval({ start: start, end: end }) : [];
 
     setSelectedMeals(
-      dates.map((date) => ({ date: new Date(date), recipe: null, id: uuid() }))
+      dates.map((date) => ({
+        date: new Date(date),
+        recipe: null,
+        id: uuid(),
+        isDisabled: false
+      }))
     );
   }, [range]);
 
-  const title = from ? `jadłospis ${from} - ${to}` : 'przygotuj jadłospis';
+  const title = from ? ` ${from} - ${to}` : '';
 
   const closeModalHandler = () => {
     props.closeModal();
@@ -92,44 +114,41 @@ const NewMenuModal = (props: NewMenuModalProps) => {
     setIsMenuActivated(false);
   };
 
-  console.log('isMenuActivated', isMenuActivated);
-
   return (
     <>
-      <Modal
-        title={title}
-        isOpen={props.isModalOpen}
-        closeModal={closeModalHandler}
-      >
-        {!isMenuActivated ? (
-          <>
+      {!isMenuActivated ? (
+        <>
+          <div className={style.name}>
             <h2 className={style.title}>Wybierz okres:</h2>
-            <div className={style.calendar}>
-              <DayPicker
-                mode='range'
-                defaultMonth={pastMonth}
-                selected={range}
-                onSelect={setRange}
-                locale={pl}
-              />
-            </div>
-          </>
-        ) : (
+          </div>
+          <div className={style.calendar}>
+            <DayPicker
+              mode='range'
+              defaultMonth={pastMonth}
+              selected={range}
+              onSelect={setRange}
+              locale={pl}
+            />
+          </div>
+        </>
+      ) : (
+        <>
+          <h2 className={style.title}>{title}</h2>
           <NewMenu
             goBack={goBack}
             dateArray={selectedMeals}
             onMealSelect={onMealSelect}
           />
-        )}
-        {dateArray.length > 0 && (
-          <button
-            onClick={isMenuActivated ? postMenu : generateMenu}
-            className={style.btn}
-          >
-            <BsCheck2 size={40} />
-          </button>
-        )}
-      </Modal>
+        </>
+      )}
+      {dateArray.length > 0 && (
+        <button
+          onClick={isMenuActivated ? postMenu : generateMenu}
+          className={style.btn}
+        >
+          <BsCheck2 size={40} />
+        </button>
+      )}
     </>
   );
 };

@@ -4,6 +4,9 @@
   padding: 250px calc(50% - 670px);
   min-height: 100vh;
   background-color: $main-color;
+  @media (max-width: 1440px) {
+    padding: 250px 50px 30px;
+  }
 }
 
 .header {
@@ -14,13 +17,16 @@
 }
 
 .title {
-  color: $darker-main-color;
+  color: $darkest-main-color;
   text-transform: uppercase;
   font-size: 36px;
+  @media (max-width: 1440px) {
+    font-size: 26px;
+  }
 }
 
 .return {
   background-color: transparent;
   cursor: pointer;
-  color: $darker-main-color;
+  color: $darkest-main-color;
 }

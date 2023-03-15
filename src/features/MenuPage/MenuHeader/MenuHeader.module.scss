@@ -4,28 +4,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @media (max-width:1440px) {
-		padding: 0 50px;
-		
-	}
+
+  
 }
 
 .title {
   text-transform: uppercase;
   font-size: 42px;
-  color: $darker-main-color;
-  @media (max-width:1440px) {
-		font-size: 32px;
-		
-	}
-  @media (max-width:600px) {
-		font-size: 24px;
-		
-	}
+  color: $darkest-main-color;
+  @media (max-width: 1440px) {
+    font-size: 32px;
+  }
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
 }
 
 .btn {
   background-color: transparent;
-  color: $darker-main-color;
+  color: $darkest-main-color;
   cursor: pointer;
 }

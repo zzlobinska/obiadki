@@ -2,23 +2,29 @@ import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import classNames from 'classnames';
 
 import { RecipesApi } from 'src/api';
 import { Loader } from 'src/components';
 import EndMessage from 'src/components/layout/EndMessage';
 import MealThumbnail from 'src/components/layout/MealThumbnail';
+import MealThumbnailInModal from 'src/components/layout/MealThumbnailInModal';
 import { RootState } from 'src/store';
 
 import style from './RecipesList.module.scss';
 
-const RecipesList = () => {
+type RecipesListProps = {
+  inModal?: boolean;
+  setRecipe?: any;
+};
+
+const RecipesList = ({ inModal, setRecipe }: RecipesListProps) => {
   const [recipes, setRecipes] = useState<any[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get('category'));
   const version = useSelector((state: RootState) => state.recipesList.version);
 
   const fetchRecipes = async (resetPage?: number) => {
@@ -52,7 +58,6 @@ const RecipesList = () => {
     if (recipesFromServer.length === 0) {
       setHasMore(false);
     }
-    console.log('dupa');
   };
 
   useEffect(() => {
@@ -70,10 +75,21 @@ const RecipesList = () => {
         loader={<Loader />}
         endMessage={<EndMessage />}
       >
-        <div className={style.recipes}>
+        <div
+          className={classNames(style.recipes, {
+            [style.inModal]: inModal
+          })}
+        >
           {recipes.map((recipe) => (
             <div key={recipe.id}>
-              <MealThumbnail recipe={{ ...recipe, ...recipe.attributes }} />
+              {inModal ? (
+                <MealThumbnailInModal
+                  recipe={{ ...recipe, ...recipe.attributes }}
+                  setRecipe={setRecipe}
+                />
+              ) : (
+                <MealThumbnail recipe={{ ...recipe, ...recipe.attributes }} />
+              )}
             </div>
           ))}
         </div>
