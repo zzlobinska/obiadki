@@ -6,9 +6,10 @@ import { Page, ScrollToTop } from 'components';
 //features
 import Landing from 'src/features/LandingPage';
 import MenuPage from 'src/features/MenuPage';
+import SingleMenu from 'src/features/MenuPage/SingleMenu';
 import ErrorPage from 'src/features/NotFoundRoute';
 import RecipesPage from 'src/features/RecipesPage';
-import SingleMenu from 'src/features/SingleMenu';
+import SingleRecipePage from 'src/features/RecipesPage/SingleRecipePage';
 import Library from 'features/Library';
 
 const RouterComponents = () => (
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
           {
             path: '/przepisy',
             element: <RecipesPage />
+          },
+          {
+            path: '/przepisy/:id',
+            element: <SingleRecipePage />
           },
           {
             path: '/jadlospisy',

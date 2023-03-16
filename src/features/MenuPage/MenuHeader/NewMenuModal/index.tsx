@@ -71,7 +71,7 @@ const NewMenuModal = (props: NewMenuModalProps) => {
     };
     await MenusApi.postMenu(data);
     dispatch(changeVersion());
-    notifySuccess(['Przepis został dodany.']);
+    notifySuccess(['Jadłospis został dodany.']);
     closeModalHandler();
   };
 

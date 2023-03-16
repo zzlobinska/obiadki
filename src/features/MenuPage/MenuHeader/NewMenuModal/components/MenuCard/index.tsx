@@ -42,7 +42,7 @@ type MenuCardProps = {
   isDisabled: boolean;
 };
 
-const getFormattedRecipe = (recipe: any) => ({
+export const getFormattedRecipe = (recipe: any) => ({
   ...recipe,
   ...recipe?.attributes
 });

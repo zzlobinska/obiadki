@@ -5,6 +5,8 @@ import RecipeDetailModal, {
   RecipeType
 } from 'src/features/RecipesPage/RecipeDetailModal';
 
+import Modal from '../Modal';
+
 import style from './MealThumbnail.module.scss';
 
 import placeholder from '../../../assets/img/placeholder.png';
@@ -42,11 +44,9 @@ const MealThumbnail = ({ recipe, randomRecipe }: MealThumbnailProps) => {
         />
         <p className={style.title}>{recipe.title}</p>
       </button>
-      <RecipeDetailModal
-        closeModal={closeModal}
-        isModalOpen={isModalOpen}
-        recipe={recipe}
-      />
+      <Modal closeModal={closeModal} isOpen={isModalOpen}>
+        <RecipeDetailModal closeModal={closeModal} recipe={recipe} />
+      </Modal>
     </>
   );
 };

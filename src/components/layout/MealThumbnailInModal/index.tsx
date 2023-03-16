@@ -5,6 +5,8 @@ import RecipeDetailModal, {
   RecipeType
 } from 'src/features/RecipesPage/RecipeDetailModal';
 
+import Modal from '../Modal';
+
 import style from './MealThumbnailInModal.module.scss';
 
 import placeholder from '../../../assets/img/placeholder.png';
@@ -44,11 +46,12 @@ const MealThumbnailInModal = ({
         <p className={style.text}>{recipe.title}</p>
         <BsSearch size={15} />
       </button>
-      <RecipeDetailModal
-        closeModal={closeModal}
-        isModalOpen={isModalOpen}
-        recipe={recipe}
-      />
+      <Modal closeModal={closeModal} isOpen={isModalOpen}>
+        <RecipeDetailModal
+          closeModal={closeModal}
+          recipe={recipe}
+        />
+      </Modal>
     </div>
   );
 };

@@ -15,7 +15,9 @@ export const RecipesApi = {
   getRecipes(params?: object) {
     return ApiClient.get(RecipesRoutes.GET_RECIPES, params);
   },
-
+  getRecipe(id: string, params?: object) {
+    return ApiClient.get(RecipesRoutes.GET_RECIPE(id), params);
+  },
   postRecipe(data: object) {
     return ApiClient.post(RecipesRoutes.POST_RECIPE, data, {
       __tokenRequired: false
@@ -46,6 +48,9 @@ export const MenusApi = {
     return ApiClient.post(MenusRoutes.POST_MENU, data, {
       __tokenRequired: false
     });
+  },
+  deleteMenu(id: string | undefined) {
+    return ApiClient.delete(MenusRoutes.DELETE_MENU(id));
   }
 };
 
