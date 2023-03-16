@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BsArrowUpLeftSquare } from 'react-icons/bs';
-import { BsFillTrashFill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import ReactToPrint from 'react-to-print';
 
 import { Button } from 'components';
 
-import { MenusApi, RecipesApi } from 'src/api';
+import { MenusApi } from 'src/api';
 import { notifyApiError, notifySuccess } from 'src/components/layout/Toasts';
 
 import MenuCard from '../MenuHeader/NewMenuModal/components/MenuCard';
@@ -17,9 +17,8 @@ import style from './SingleMenu.module.scss';
 
 const SingleMenu = () => {
   const [menu, setMenu] = useState<any>();
-  const [recipe, setRecipe] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const componentRef = useRef(null);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -62,18 +61,30 @@ const SingleMenu = () => {
           </button>
           <h2 className={style.title}>{menu?.attributes?.name}</h2>
         </div>
-        <Button onClick={deleteMenu} label='USUŃ' />
+        <div className={style.btns}>
+          <ReactToPrint
+            trigger={() => <Button gray label='DRUKUJ' />}
+            content={() => componentRef.current}
+            bodyClass={style.print}
+            documentTitle={menu?.attributes?.name}
+          />
+
+          <Button onClick={deleteMenu} label='USUŃ' />
+        </div>
       </div>
-      {menu?.attributes?.days?.map((day: any) => (
-        <MenuCard
-          id={day.id}
-          ready
-          isDisabled={day.isDisabled}
-          day={new Date(day.date)}
-          key={day.date}
-          recipe={day.recipe.data}
-        />
-      ))}
+      <div className={style.to_print} ref={componentRef}>
+        <h2 className={style.printTitle}>Jadłospis {menu?.attributes?.name}</h2>
+        {menu?.attributes?.days?.map((day: any) => (
+          <MenuCard
+            id={day.id}
+            ready
+            isDisabled={day.isDisabled}
+            day={new Date(day.date)}
+            key={day.date}
+            recipe={day.recipe.data}
+          />
+        ))}
+      </div>
     </div>
   );
 };

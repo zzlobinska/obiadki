@@ -43,3 +43,32 @@
   cursor: pointer;
   color: $darkest-main-color;
 }
+
+.btns {
+  display: flex;
+  gap: 20px;
+}
+
+.print {
+  padding: 40px;
+}
+
+.printTitle {
+  display: none;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  @media print {
+    display: block;
+  }
+}
+
+.to_print {
+  @media print {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    min-height: 200mm;
+  }
+}
