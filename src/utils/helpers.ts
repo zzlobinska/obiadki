@@ -4,6 +4,8 @@ import IBAN from 'iban';
 import numeral from 'numeral';
 import { validatePolish } from 'validate-polish';
 
+import { RecipeType, ServerRecipeType } from 'src/constans/types';
+
 export const getCounterLabel = (counter: number) => {
   return counter >= 100 ? '99+' : counter.toString();
 };
@@ -150,3 +152,17 @@ export const getNotificationIdFromName = (errors: string[]) => {
 
   return String(sum.toFixed(0));
 };
+
+export const getDefaultCategory = (cat?: string | null) => {
+  if (cat) {
+    return {
+      label: cat,
+      value: cat
+    };
+  }
+};
+
+export const getFullRecipe = (recipe: ServerRecipeType): RecipeType => ({
+  ...recipe,
+  ...recipe.attributes
+});

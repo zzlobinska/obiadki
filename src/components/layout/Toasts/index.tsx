@@ -98,7 +98,7 @@ export const notifyDanger = (items: string[], options?: NotifyOptions) =>
   notify('#BC4747', items, options);
 
 export const notifyApiError = (
-  error: AxiosError,
+  error: AxiosError | any,
   color: 'common' | 'danger' = 'danger'
 ) => {
   if (error?.response?.status === 503) return;

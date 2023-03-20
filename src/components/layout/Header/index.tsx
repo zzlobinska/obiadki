@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 
 import style from './Header.module.scss';
 
-type HeaderProps = {};
-
-const Header = (props: HeaderProps) => {
+const Header = () => {
 	return (
 		<div className={style.container}>
 			<ul className={style.nav}>

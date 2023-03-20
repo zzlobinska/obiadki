@@ -1,7 +1,10 @@
 @use 'src/styles' as *;
 
 .section {
-	background-color: $main-color;
-	padding: 250px calc(50% - 670px);
-  height: 100vh;
+  background-color: $main-color;
+  padding: 250px calc(50% - 670px) 30px;
+  min-height: 100vh;
+  @media (max-width: 1440px) {
+    padding: 170px 50px;
+  }
 }
