@@ -1,0 +1,113 @@
+@use 'src/styles' as *;
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+
+  &.single {
+    background-color: #fff;
+    padding: 100px 30px;
+    min-width: 60%;
+    border-radius: 5px;
+   
+  }
+}
+
+.image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
+  box-shadow: 3px 3px 15px 0 rgb(0 0 0 / 10%);
+
+  &.single {
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+}
+
+.categories {
+  display: flex;
+  gap: 10px;
+}
+
+.category {
+  border: 1px solid $main-color;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparentize($main-color, 0.5);
+  padding: 15px;
+  border-radius: 13px;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.recipe {
+  margin-top: 30px;
+  padding: 20px;
+  &__title {
+    text-transform: uppercase;
+    font-weight: normal;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+.ingridients {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style-type: none;
+}
+
+.ingridient {
+  list-style-type: '-  ';
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  list-style-type: decimal;
+}
+
+.btns {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  align-items: center;
+}
+
+.navigate {
+  color: $main-color;
+  transform: rotateY(180deg);
+
+  &.single {
+    display: none;
+  }
+}

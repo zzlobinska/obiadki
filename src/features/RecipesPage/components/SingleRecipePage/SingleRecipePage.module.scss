@@ -1,0 +1,21 @@
+@import 'src/styles';
+
+.content {
+  padding: 150px calc(50% - 500px);
+  min-height: 100vh;
+  background-color: $main-color;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  
+  
+  @media (max-width: 1440px) {
+    padding: 250px 50px 30px;
+  }
+}
+
+.back {
+max-width: 150px;
+}
+
+

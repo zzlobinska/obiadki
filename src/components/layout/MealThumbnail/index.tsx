@@ -1,24 +1,52 @@
 import { useState } from 'react';
-import RecepieDetailModal from 'src/features/RecepiesPage/RecepieDetailModal';
+import classNames from 'classnames';
+
+import placeholder from 'src/assets/img/placeholder.png';
+import { RecipeType } from 'src/constans/types';
+import RecipeDetailModal from 'src/features/RecipesPage/components/RecipeDetailModal';
+
+import Modal from '../Modal';
+
 import style from './MealThumbnail.module.scss';
 
 type MealThumbnailProps = {
-	title: string;
-	image: string;
-	openModal: () => void;
+  recipe: RecipeType;
+  randomRecipe?: boolean;
 };
 
-const MealThumbnail = (props: MealThumbnailProps) => {
-	return (
-		<button onClick={props.openModal} className={style.container}>
-			<img
-				alt='a thumbnail of meals recepie'
-				src={props.image}
-				className={style.image}
-			/>
-			<p className={style.title}>{props.title}</p>
-		</button>
-	);
+const MealThumbnail = ({ recipe, randomRecipe }: MealThumbnailProps) => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  return (
+    <>
+      <button
+        onClick={openModal}
+        className={classNames(style.container, {
+          [style.container_menu]: randomRecipe
+        })}
+      >
+        <img
+          alt='a thumbnail of meals recipe'
+          src={recipe.thumbnail || placeholder}
+          className={style.image}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = placeholder;
+          }}
+        />
+        <p className={style.title}>{recipe.title}</p>
+      </button>
+      <Modal closeModal={closeModal} isOpen={isModalOpen}>
+        <RecipeDetailModal closeModal={closeModal} recipe={recipe} />
+      </Modal>
+    </>
+  );
 };
 
 export default MealThumbnail;

@@ -5,52 +5,62 @@ import { Page, ScrollToTop } from 'components';
 
 //features
 import Landing from 'src/features/LandingPage';
-import ErrorPage from 'src/features/NotFoundRoute';
-import Library from 'features/Library';
-import RecepiesPage from 'src/features/RecepiesPage';
 import MenuPage from 'src/features/MenuPage';
+import SingleMenu from 'src/features/MenuPage/components/SingleMenu';
+import ErrorPage from 'src/features/NotFoundRoute';
+import RecipesPage from 'src/features/RecipesPage';
+import SingleRecipePage from 'src/features/RecipesPage/components/SingleRecipePage';
+import Library from 'features/Library';
 
 const RouterComponents = () => (
-	<>
-		<ScrollToTop />
-		<ReactNotifications />
-		<Outlet />
-	</>
+  <>
+    <ScrollToTop />
+    <ReactNotifications />
+    <Outlet />
+  </>
 );
 
 export const router = createBrowserRouter([
-	{
-		element: <RouterComponents />,
-		children: [
-			{
-				path: '/',
-				element: <Page />,
-				errorElement: <ErrorPage />,
-				children: [
-					{
-						path: '/',
-						element: <Landing />,
-					},
-					{
-						path: '/lib',
-						element: <Library />,
-					},
-					{
-						path: '/przepisy',
-						element: <RecepiesPage />,
-					},
-					{
-						path: '/jadlospisy',
-						element: <MenuPage />,
-					},
-				],
-			},
-		],
-	},
+  {
+    element: <RouterComponents />,
+    children: [
+      {
+        path: '/',
+        element: <Page />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: '/',
+            element: <Landing />
+          },
+          {
+            path: '/lib',
+            element: <Library />
+          },
+          {
+            path: '/przepisy',
+            element: <RecipesPage />
+          },
+          {
+            path: '/przepisy/:id',
+            element: <SingleRecipePage />
+          },
+          {
+            path: '/jadlospisy',
+            element: <MenuPage />
+          },
+          {
+            path: '/jadlospisy/:id',
+            element: <SingleMenu />
+          }
+        ]
+      }
+    ]
+  }
 ]);
 
 const AppRouter = () => {
-	return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 };
 
 export default AppRouter;

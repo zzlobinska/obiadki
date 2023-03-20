@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import cn from 'classnames';
 
-import { Header, Sidebar, useAppSelector } from 'components';
+import { Header, useAppSelector } from 'components';
 
 import style from './Page.module.scss';
 

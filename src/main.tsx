@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
+import i18next from 'i18next';
+
+import './i18n/i18n';
 
 import AppRouter from './app/AppRouter';
 import store from './store';
-
-import './i18n/i18n';
-import i18next from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 
 import 'react-notifications-component/dist/theme.css';
 import 'src/styles/global.scss';

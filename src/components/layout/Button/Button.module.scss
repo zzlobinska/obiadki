@@ -1,106 +1,115 @@
 @import 'src/styles';
 
 .button {
-  column-gap: 15px;
-  text-align: center;
-  padding: 16px 22px;
-  background-color: $gray-color;
-  border-radius: $radius-m;
-  font-size: $font-size-m;
-  font-weight: $font-semiBold;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
-  height: 50px;
+	column-gap: 15px;
+	text-align: center;
+	padding: 16px 22px;
+	background-color: $gray-color;
+	border-radius: $radius-m;
+	font-size: $font-size-m;
+	font-weight: $font-semiBold;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.2s, color 0.2s;
+	height: 50px;
 
-  &:hover,
-  &:active {
-    background-color: darken($gray-color, 6%);
-  }
+	&:hover,
+	&:active {
+		background-color: darken($gray-color, 6%);
+	}
 }
 
 .inner {
-  @include element-flex(row, center, center);
-  width: 100%;
-  position: relative;
+	@include element-flex(row, center, center);
+	width: 100%;
+	position: relative;
 }
 
 .disabled {
-  background-color: $gray-light-color;
-  color: $gray-color;
-  cursor: not-allowed;
-  border-color: transparent;
+	background-color: $gray-light-color;
+	color: $gray-color;
+	cursor: not-allowed;
+	border-color: transparent;
 
-  &:hover,
-  &:active {
-    background-color: $gray-light-color;
-  }
+	&:hover,
+	&:active {
+		background-color: $gray-light-color;
+	}
 }
 
 .loader {
-  height: 20px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .darkTextAndBorder {
-  border: 1px solid $gray-color;
-  color: $gray-color;
+	border: 1px solid $gray-color;
+	color: $gray-color;
 
-  &:hover,
-  &:active {
-    border-color: darken($gray-color, 6%);
-  }
+	&:hover,
+	&:active {
+		border-color: darken($gray-color, 6%);
+	}
 }
 
 .gray {
-  background-color: $gray-lighter-color;
+	background-color: $gray-lighter-color;
+	color: black;
 
-  &:hover,
-  &:active {
-    background-color: darken($gray-lighter-color, 3%);
-  }
+	&:hover,
+	&:active {
+		background-color: darken($gray-lighter-color, 3%);
+	}
 }
 
 .empty {
-  background-color: transparent;
+	background-color: transparent;
 
-  &:hover,
-  &:active {
-    background-color: transparent;
-  }
+	&:hover,
+	&:active {
+		background-color: transparent;
+	}
 }
 
 .white {
-  background-color: $white-color;
+	background-color: $white-color;
 
-  &:hover,
-  &:active {
-    background-color: darken($white-color, 3%);
-  }
+	&:hover,
+	&:active {
+		background-color: darken($white-color, 3%);
+	}
+}
+
+.red {
+	background-color: tomato;
+
+	&:hover {
+		background-color: darken(tomato, 5%);
+	}
 }
 
 .icon {
-  width: 17px;
-  height: 17px;
-  object-fit: contain;
+	width: 17px;
+	height: 17px;
+	object-fit: contain;
 }
 
 .isLoading {
-  @include disabled-ui();
+	@include disabled-ui();
 }
 
 .wrapper {
-  @include element-flex(row, center, center);
-  gap: 15px;
+	@include element-flex(row, center, center);
+	gap: 15px;
 }
 
 .hidden {
-  visibility: hidden;
+	visibility: hidden;
 }
 
 .reverse {
-  flex-direction: row-reverse;
+	flex-direction: row-reverse;
 }
