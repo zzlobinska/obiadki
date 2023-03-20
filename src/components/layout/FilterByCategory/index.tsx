@@ -3,32 +3,29 @@ import { useSearchParams } from 'react-router-dom';
 
 import { CategoriesApi } from 'src/api';
 import { InputSelect } from 'src/components';
-import { CategoryType } from 'src/features/RecipesPage/RecipeDetailModal';
+import { FormattedCategoryType, ServerCategoryType } from 'src/constans/types';
+import { getDefaultCategory } from 'src/utils/helpers';
 
 import style from './FilterByCategory.module.scss';
 
-const getDefaultCategory = (cat?: string | null) => {
-  if (cat) {
-    return {
-      label: cat,
-      value: cat
-    };
-  }
-};
+type SingleCatType = { label: string; value: string };
+
 const FilterByCategory = () => {
   const [searchParams, setSearchParams] = useSearchParams('');
-  const [searchedValue, setSearchedValue] = useState<any>(
-    getDefaultCategory(searchParams.get('category')) || ''
+  const [searchedValue, setSearchedValue] = useState<SingleCatType | null>(
+    getDefaultCategory(searchParams.get('category')) || null
   );
-  const [categoriesList, setCategoriesList] = useState<CategoryType[]>([]);
+  const [categoriesList, setCategoriesList] = useState<
+    ServerCategoryType[] | FormattedCategoryType[]
+  >([]);
 
-  const filterHandler = (cat: object) => {
+  const filterHandler = (cat: SingleCatType) => {
     setSearchedValue(cat);
   };
 
-  const getFormattedCategories = (cats: any[]) => {
+  const getFormattedCategories = (cats: ServerCategoryType[]) => {
     const filteredCats = cats.filter(
-      (cat: CategoryType) => cat.attributes.parent.data
+      (cat: ServerCategoryType) => cat.attributes.parent.data
     );
     return filteredCats.map((cat) => ({
       label: cat.attributes.name,
@@ -37,17 +34,13 @@ const FilterByCategory = () => {
     }));
   };
 
-  const fetchCategories = async () => {
-    const { data } = await CategoriesApi.getCategories({});
-    setCategoriesList(getFormattedCategories(data.data));
-  };
-
   useEffect(() => {
+    const fetchCategories = async () => {
+      const { data } = await CategoriesApi.getCategories({});
+      setCategoriesList(getFormattedCategories(data.data));
+    };
     fetchCategories();
   }, []);
-
-
- 
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -60,7 +53,7 @@ const FilterByCategory = () => {
       }
     }, 400);
     return () => clearTimeout(timer);
-  }, [searchedValue]);
+  }, [searchedValue, searchParams, setSearchParams]);
 
   return (
     <div className={style.categories}>

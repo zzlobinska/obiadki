@@ -1,13 +1,11 @@
-import { useState } from 'react';
-
-import { Modal } from 'src/components';
-import RecipesHeader from 'src/features/RecipesPage/RecipesHeader';
-import RecipesList from 'src/features/RecipesPage/RecipesList';
+import { RecipeType } from 'src/constans/types';
+import RecipesHeader from 'src/features/RecipesPage/components/RecipesHeader';
+import RecipesList from 'src/features/RecipesPage/components/RecipesList';
 
 import style from './AddRecipeModal.module.scss';
 
 type AddRecipeModalprops = {
-  setRecipe: any;
+  setRecipe: (recipe: RecipeType) => void;
 };
 
 const AddRecipeModal = ({ setRecipe }: AddRecipeModalprops) => {

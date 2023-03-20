@@ -6,10 +6,10 @@ import { Page, ScrollToTop } from 'components';
 //features
 import Landing from 'src/features/LandingPage';
 import MenuPage from 'src/features/MenuPage';
-import SingleMenu from 'src/features/MenuPage/SingleMenu';
+import SingleMenu from 'src/features/MenuPage/components/SingleMenu';
 import ErrorPage from 'src/features/NotFoundRoute';
 import RecipesPage from 'src/features/RecipesPage';
-import SingleRecipePage from 'src/features/RecipesPage/SingleRecipePage';
+import SingleRecipePage from 'src/features/RecipesPage/components/SingleRecipePage';
 import Library from 'features/Library';
 
 const RouterComponents = () => (

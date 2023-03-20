@@ -5,50 +5,15 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { RecipesApi } from 'src/api';
+import placeholder from 'src/assets/img/placeholder.png';
 import { Button, Modal } from 'src/components';
 import { notifyApiError, notifySuccess } from 'src/components/layout/Toasts';
+import { RecipeType } from 'src/constans/types';
 
+import { changeVersion } from '../../slice';
 import NewRecipeModal from '../NewRecipeModal';
-import { changeVersion } from '../slice';
 
 import style from './RecipeDetailModal.module.scss';
-
-import placeholder from '../../../assets/img/placeholder.png';
-
-export interface CategoryType {
-  id: number;
-  attributes: {
-    name: string;
-    parent: {
-      data: CategoryType;
-    };
-  };
-}
-
-export interface SelectedCategoryType extends CategoryType {
-  label: string;
-  value: number;
-}
-
-export type ServerIngridientType = {
-  ingredient_name: string;
-  ingredient_unit: string;
-  ingredient_quantity: number;
-  id: string;
-};
-
-export type RecipeType = {
-  thumbnail: string;
-  description: string;
-  ingredients: ServerIngridientType[];
-  portion_number: number;
-  prepare_time: string;
-  title: string;
-  id: number;
-  categories: {
-    data: CategoryType[];
-  };
-};
 
 type NewRecipeModalProps = {
   closeModal?: () => void;

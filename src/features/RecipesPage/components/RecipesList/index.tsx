@@ -9,17 +9,20 @@ import { Loader } from 'src/components';
 import EndMessage from 'src/components/layout/EndMessage';
 import MealThumbnail from 'src/components/layout/MealThumbnail';
 import MealThumbnailInModal from 'src/components/layout/MealThumbnailInModal';
+import { notifyApiError } from 'src/components/layout/Toasts';
+import { RecipeType, ServerRecipeType } from 'src/constans/types';
 import { RootState } from 'src/store';
+import { getFullRecipe } from 'src/utils/helpers';
 
 import style from './RecipesList.module.scss';
 
 type RecipesListProps = {
   inModal?: boolean;
-  setRecipe?: any;
+  setRecipe?: (recipe: RecipeType) => void;
 };
 
 const RecipesList = ({ inModal, setRecipe }: RecipesListProps) => {
-  const [recipes, setRecipes] = useState<any[]>([]);
+  const [recipes, setRecipes] = useState<ServerRecipeType[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
@@ -45,10 +48,14 @@ const RecipesList = ({ inModal, setRecipe }: RecipesListProps) => {
         }
       }
     };
-    const { data } = await RecipesApi.getRecipes(query);
-    setRecipes(data.data);
-    setIsLoading(false);
-    return data.data;
+    try {
+      const { data } = await RecipesApi.getRecipes(query);
+      setRecipes(data.data);
+      setIsLoading(false);
+      return data.data;
+    } catch (error) {
+      notifyApiError(error);
+    }
   };
 
   const getMorePost = async () => {
@@ -84,11 +91,11 @@ const RecipesList = ({ inModal, setRecipe }: RecipesListProps) => {
             <div key={recipe.id}>
               {inModal ? (
                 <MealThumbnailInModal
-                  recipe={{ ...recipe, ...recipe.attributes }}
+                  recipe={getFullRecipe(recipe)}
                   setRecipe={setRecipe}
                 />
               ) : (
-                <MealThumbnail recipe={{ ...recipe, ...recipe.attributes }} />
+                <MealThumbnail recipe={getFullRecipe(recipe)} />
               )}
             </div>
           ))}

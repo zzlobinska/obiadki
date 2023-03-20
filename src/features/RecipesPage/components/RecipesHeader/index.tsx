@@ -10,8 +10,8 @@ import NewRecipeModal from '../NewRecipeModal';
 import style from './RecipesHeader.module.scss';
 
 type RecipesHeaderProps = {
-  inModal: boolean
-}
+  inModal?: boolean;
+};
 
 const RecipesHeader = ({ inModal }: RecipesHeaderProps) => {
   const [isModalActive, setIsModalActive] = useState(false);

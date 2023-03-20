@@ -1,44 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useMemo } from 'react';
 import { DateRange, DayPicker } from 'react-day-picker';
-import { BsCheck2, BsFillReplyFill, BsPlusSquare } from 'react-icons/bs';
+import { BsCheck2 } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
-import { addDays } from 'date-fns';
 import { eachDayOfInterval } from 'date-fns';
 import { pl } from 'date-fns/locale';
 
 import { MenusApi } from 'src/api';
-import { Modal } from 'src/components';
 import { notifyDanger, notifySuccess } from 'src/components/layout/Toasts';
+import { selectedDateType } from 'src/constans/types';
 
 import { changeVersion } from '../../slice';
-import NewMenu from './components/NewMenu';
+import NewMenu from '../NewMenu';
 
 import 'react-day-picker/dist/style.css';
 import style from './NewMenuModal.module.scss';
 
-type NewMenuModalProps = {
+type NewMenuModalPropsType = {
   isModalOpen: boolean;
   closeModal: () => void;
 };
 
 const pastMonth = new Date();
 
-const NewMenuModal = (props: NewMenuModalProps) => {
+const NewMenuModal = (props: NewMenuModalPropsType) => {
   const [range, setRange] = useState<DateRange | undefined>();
   const [isMenuActivated, setIsMenuActivated] = useState<boolean>(false);
-  const [selectedMeals, setSelectedMeals] = useState<any[]>([]);
+  const [selectedMeals, setSelectedMeals] = useState<selectedDateType[]>([]);
 
   const dispatch = useDispatch();
 
-  const defaultSelected: DateRange = {
-    from: pastMonth,
-    to: addDays(pastMonth, 4)
-  };
-
   const onMealSelect = (meal: { date: Date; recipe: number; id: string }) => {
-    console.log('meal', meal);
     setSelectedMeals((prev) => [
       ...prev.map((item) => {
         return item.id !== meal.id ? item : meal;
@@ -54,12 +47,7 @@ const NewMenuModal = (props: NewMenuModalProps) => {
       notifyDanger(['Wybierz przepis lub oznacz dzień jako bezprzepisowy.']);
       return;
     }
-    console.log(
-      'cipelunka',
-      selectedMeals?.filter(
-        (meal) => !meal.recipe || (meal.recipe && !meal.isDisabled)
-      ).length
-    );
+
     const data = {
       data: {
         name: title,
@@ -75,30 +63,41 @@ const NewMenuModal = (props: NewMenuModalProps) => {
     closeModalHandler();
   };
 
-  const start = range?.from ? new Date(range?.from) : '';
-  const end = range?.to ? new Date(range.to) : '';
+  const start = useMemo(
+    () => (range?.from ? new Date(range.from) : ''),
+    [range]
+  );
+  const end = useMemo(() => (range?.to ? new Date(range.to) : ''), [range]);
 
-  const from = range?.from ? new Date(range?.from).toLocaleDateString() : '';
-  const to = range?.to ? new Date(range.to).toLocaleDateString() : '';
+  const from = useMemo(
+    () => (range?.from ? new Date(range?.from).toLocaleDateString() : ''),
+    [range]
+  );
+  const to = useMemo(
+    () => (range?.to ? new Date(range.to).toLocaleDateString() : ''),
+    [range]
+  );
 
   const dateArray = useMemo(
     () => (start && end ? eachDayOfInterval({ start: start, end: end }) : []),
-    [range]
+    [end, start]
   );
 
   useEffect(() => {
     const dates =
       start && end ? eachDayOfInterval({ start: start, end: end }) : [];
 
-    setSelectedMeals(
-      dates.map((date) => ({
-        date: new Date(date),
-        recipe: null,
-        id: uuid(),
-        isDisabled: false
-      }))
-    );
-  }, [range]);
+    if (selectedMeals.length === 0 && start && end) {
+      setSelectedMeals(
+        dates.map((date) => ({
+          date: new Date(date),
+          recipe: null,
+          id: uuid(),
+          isDisabled: false
+        }))
+      );
+    }
+  }, [range, end, start]);
 
   const title = from ? ` ${from} - ${to}` : '';
 
@@ -113,6 +112,8 @@ const NewMenuModal = (props: NewMenuModalProps) => {
   const goBack = () => {
     setIsMenuActivated(false);
   };
+
+  console.log('selectedMeals', selectedMeals);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   BsFillClockFill,
   BsFillPeopleFill,
@@ -11,14 +11,15 @@ import { CategoriesApi, RecipesApi } from 'src/api';
 import { Button, Input, Textarea, useValidator } from 'src/components';
 import Multiselect from 'src/components/layout/Multiselect';
 import { notifyDanger, notifySuccess } from 'src/components/layout/Toasts';
-
 import {
-  CategoryType,
+  IngridientType,
   RecipeType,
-  SelectedCategoryType
-} from '../RecipeDetailModal';
-import { changeVersion } from '../slice';
-import Ingredient from './Ingredient';
+  SelectedCategoryType,
+  ServerCategoryType
+} from 'src/constans/types';
+
+import { changeVersion } from '../../slice';
+import Ingredient from '../Ingredient';
 
 import style from './NewRecipeModal.module.scss';
 
@@ -27,12 +28,6 @@ type NewRecipeModalProps = {
   isModalActive: boolean;
   recipe?: RecipeType;
   editRecipe?: boolean;
-};
-export type IngridientType = {
-  quantity: number | undefined;
-  name: string;
-  id: string;
-  unit: { label: string; value: string } | null;
 };
 
 const getCategories = (recipe?: RecipeType) => {
@@ -74,7 +69,9 @@ const NewRecipeModal = ({
   const [prepareTime, setPrepareTime] = useState<string>(
     recipe?.prepare_time || ''
   );
-  const [categoriesList, setCategoriesList] = useState<CategoryType[]>([]);
+  const [categoriesList, setCategoriesList] = useState<ServerCategoryType[]>(
+    []
+  );
 
   const [selectedCategories, setSelectedCategories] = useState<
     SelectedCategoryType[]
@@ -145,23 +142,27 @@ const NewRecipeModal = ({
 
   const validator = useValidator();
 
-  const fetchCategories = async () => {
-    const { data } = await CategoriesApi.getCategories({});
-    setCategoriesList(
-      data.data.filter((cat: CategoryType) => cat.attributes.parent.data)
-    );
-  };
-
   useEffect(() => {
+    const fetchCategories = async () => {
+      const { data } = await CategoriesApi.getCategories({});
+      setCategoriesList(
+        data.data.filter(
+          (cat: ServerCategoryType) => cat.attributes.parent.data
+        )
+      );
+    };
     fetchCategories();
   }, []);
 
-  const options = categoriesList.map((cat) => ({
-    ...cat,
-    label: cat.attributes.name,
-    value: cat.id
-  }));
-
+  const options = useMemo(
+    () =>
+      categoriesList.map((cat) => ({
+        ...cat,
+        label: cat.attributes.name,
+        value: cat.id
+      })),
+    [categoriesList]
+  );
   return (
     <div className={style.content}>
       <div className={style.main}>

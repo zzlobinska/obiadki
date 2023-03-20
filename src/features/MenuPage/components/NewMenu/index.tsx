@@ -1,18 +1,13 @@
-import { useState } from 'react';
 import { BsFillReplyFill } from 'react-icons/bs';
-import uuid from 'react-uuid';
+
+import { selectedDateType } from 'src/constans/types';
 
 import MenuCard from '../MenuCard';
 
-import style from '../../NewMenuModal.module.scss';
+import style from '../NewMenuModal/NewMenuModal.module.scss';
 
 type NewMenuProps = {
-  dateArray: {
-    date: Date;
-    recipe: number | null;
-    id: string;
-    isDisabled: boolean;
-  }[];
+  dateArray: selectedDateType[];
   goBack: () => void;
   onMealSelect?: (data: {
     date: Date;

@@ -9,12 +9,10 @@ import InputWrapper, {
 
 import { selectStyles } from '../InputSelect/styles';
 
-
-
 interface SelectProps extends InnerWrapperProps {
   options: object[];
   value: object;
-  onChange: (x: any) => void | Dispatch<SetStateAction<object[] | null>>;
+  onChange: (x: []) => void | Dispatch<SetStateAction<object[] | null>>;
   wrapperStyle?: string;
   noOptionsMessage?: string;
   isLoading?: boolean;

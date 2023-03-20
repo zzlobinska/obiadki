@@ -19,9 +19,7 @@ export const RecipesApi = {
     return ApiClient.get(RecipesRoutes.GET_RECIPE(id), params);
   },
   postRecipe(data: object) {
-    return ApiClient.post(RecipesRoutes.POST_RECIPE, data, {
-      __tokenRequired: false
-    });
+    return ApiClient.post(RecipesRoutes.POST_RECIPE, data);
   },
   deleteRecipe(id: number) {
     return ApiClient.delete(RecipesRoutes.DELETE_RECIPE(id));
@@ -45,11 +43,9 @@ export const MenusApi = {
     return ApiClient.get(MenusRoutes.GET_MENU(id), params);
   },
   postMenu(data: object) {
-    return ApiClient.post(MenusRoutes.POST_MENU, data, {
-      __tokenRequired: false
-    });
+    return ApiClient.post(MenusRoutes.POST_MENU, data);
   },
-  deleteMenu(id: string | undefined) {
+  deleteMenu(id: string) {
     return ApiClient.delete(MenusRoutes.DELETE_MENU(id));
   }
 };

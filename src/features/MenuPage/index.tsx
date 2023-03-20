@@ -1,5 +1,5 @@
-import MenuHeader from './MenuHeader';
-import MenusList from './MenusList';
+import MenuHeader from './components/MenuHeader';
+import MenusList from './components/MenusList';
 
 import style from './MenuPage.module.scss';
 

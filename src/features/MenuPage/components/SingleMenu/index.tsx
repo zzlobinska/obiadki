@@ -5,42 +5,42 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
 
-import { Button } from 'components';
+import { Button, Loader } from 'components';
 
 import { MenusApi } from 'src/api';
 import { notifyApiError, notifySuccess } from 'src/components/layout/Toasts';
+import { MenuDayType, MenuType } from 'src/constans/types';
 
-import MenuCard from '../MenuHeader/NewMenuModal/components/MenuCard';
-import { changeVersion } from '../slice';
+import { changeVersion } from '../../slice';
+import MenuCard from '../MenuCard';
 
 import style from './SingleMenu.module.scss';
 
 const SingleMenu = () => {
-  const [menu, setMenu] = useState<any>();
+  const [menu, setMenu] = useState<MenuType>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const componentRef = useRef(null);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const fetchMenu = async () => {
-    if (id) {
-      setIsLoading(true);
-      const { data } = await MenusApi.getMenu(id);
-      setMenu(data.data);
-      setIsLoading(false);
-      return data.data;
-    } else {
-      navigate('/jadlospisy');
-    }
-  };
-
   useEffect(() => {
+    const fetchMenu = async () => {
+      if (id) {
+        setIsLoading(true);
+        const { data } = await MenusApi.getMenu(id);
+        setMenu(data.data);
+        setIsLoading(false);
+        return data.data;
+      } else {
+        navigate('/jadlospisy');
+      }
+    };
     fetchMenu();
   }, []);
 
   const deleteMenu = async () => {
-    if (window.confirm('Czy na pewno chcesz usunąć jadłospis?')) {
+    if (window.confirm('Czy na pewno chcesz usunąć jadłospis?') && id) {
       try {
         await MenusApi.deleteMenu(id);
         dispatch(changeVersion());
@@ -51,6 +51,7 @@ const SingleMenu = () => {
       }
     }
   };
+  console.log('recipe', menu);
 
   return (
     <div className={style.main}>
@@ -74,7 +75,7 @@ const SingleMenu = () => {
       </div>
       <div className={style.to_print} ref={componentRef}>
         <h2 className={style.printTitle}>Jadłospis {menu?.attributes?.name}</h2>
-        {menu?.attributes?.days?.map((day: any) => (
+        {menu?.attributes?.days?.map((day: MenuDayType) => (
           <MenuCard
             id={day.id}
             ready
@@ -85,6 +86,7 @@ const SingleMenu = () => {
           />
         ))}
       </div>
+      {isLoading && <Loader />}
     </div>
   );
 };

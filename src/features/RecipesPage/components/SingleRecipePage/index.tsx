@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { RecipesApi } from 'src/api';
-import { Button } from 'src/components';
-import { getFormattedRecipe } from 'src/features/MenuPage/MenuHeader/NewMenuModal/components/MenuCard';
+import { Button, Loader } from 'src/components';
+import { notifyApiError } from 'src/components/layout/Toasts';
+import { RecipeType } from 'src/constans/types';
+import { getFullRecipe } from 'src/utils/helpers';
 
 import RecipeDetailModal from '../RecipeDetailModal';
 
@@ -11,23 +13,27 @@ import style from './SingleRecipePage.module.scss';
 
 const SingleRecipePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [recipe, setRecipe] = useState<any>(null);
+  const [recipe, setRecipe] = useState<RecipeType>();
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const fetchRecipe = async () => {
-    if (id) {
-      setIsLoading(true);
-      const { data } = await RecipesApi.getRecipe(id);
-      setRecipe(getFormattedRecipe(data.data));
-      setIsLoading(false);
-      return data.data;
-    } else {
-      navigate('/przepisy');
-    }
-  };
-
   useEffect(() => {
+    const fetchRecipe = async () => {
+      if (id) {
+        try {
+          setIsLoading(true);
+          const { data } = await RecipesApi.getRecipe(id);
+          setRecipe(getFullRecipe(data.data));
+          return data.data;
+        } catch (error) {
+          notifyApiError(error);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        navigate('/przepisy');
+      }
+    };
     fetchRecipe();
   }, []);
 
@@ -43,6 +49,7 @@ const SingleRecipePage = () => {
         label='WRÓĆ'
       />
       <RecipeDetailModal single recipe={recipe} />
+      {isLoading && <Loader />}
     </div>
   );
 };

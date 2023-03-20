@@ -3,7 +3,7 @@ import { BsPlusSquare } from 'react-icons/bs';
 
 import { Modal } from 'src/components';
 
-import NewMenuModal from './NewMenuModal';
+import NewMenuModal from '../NewMenuModal';
 
 import style from './MenuHeader.module.scss';
 
@@ -22,7 +22,11 @@ const MenuHeader = () => {
       <button onClick={openModal} className={style.btn}>
         <BsPlusSquare size={40} />
       </button>
-      <Modal title={'przygotuj jadłospis'} isOpen={isModalOpen} closeModal={closeModal}>
+      <Modal
+        title={'przygotuj jadłospis'}
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+      >
         <NewMenuModal isModalOpen={isModalOpen} closeModal={closeModal} />
       </Modal>
     </div>

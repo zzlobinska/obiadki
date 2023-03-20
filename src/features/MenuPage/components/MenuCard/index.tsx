@@ -11,7 +11,8 @@ import classNames from 'classnames';
 import { RecipesApi } from 'src/api';
 import { Modal } from 'src/components';
 import MealThumbnail from 'src/components/layout/MealThumbnail';
-import { RecipeType } from 'src/features/RecipesPage/RecipeDetailModal';
+import { RecipeType, ServerRecipeType } from 'src/constans/types';
+import { getFullRecipe } from 'src/utils/helpers';
 
 import AddRecipeModal from '../AddRecipeModal';
 
@@ -31,7 +32,7 @@ type MenuCardProps = {
   day: Date;
   key: string;
   ready?: boolean;
-  recipe?: any;
+  recipe?: ServerRecipeType;
   onMealSelect?: (data: {
     date: Date;
     recipe: number;
@@ -39,19 +40,14 @@ type MenuCardProps = {
     isDisabled: boolean;
   }) => void;
   id: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 };
-
-export const getFormattedRecipe = (recipe: any) => ({
-  ...recipe,
-  ...recipe?.attributes
-});
 
 const MenuCard = (props: MenuCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isDayActive, setIsDayActive] = useState<boolean>(!props.isDisabled);
   const [randomRecipe, setRandomRecipe] = useState<RecipeType | null>(
-    props.ready && getFormattedRecipe(props.recipe)
+    props.ready && props.recipe ? getFullRecipe(props.recipe) : null
   );
 
   const generateFunnyText = () => {
@@ -73,7 +69,6 @@ const MenuCard = (props: MenuCardProps) => {
     setIsModalOpen(true);
   };
 
-  const disabledTextClass = classNames(style.generator__txt, {});
   const disabledBtnClass = classNames(style.generator__btn, {
     [style.disabled]: !isDayActive
   });
@@ -96,23 +91,23 @@ const MenuCard = (props: MenuCardProps) => {
       }
     };
     const { data: recipeData } = await RecipesApi.getRecipes(query);
-    setRandomRecipe({
-      ...recipeData.data[0],
-      ...recipeData.data[0].attributes
-    });
+    setRandomRecipe(getFullRecipe(recipeData.data[0]));
   };
 
-  const setRecipeHandler = (recipe: any) => {
+  const setRecipeHandler = (recipe: RecipeType) => {
     setRandomRecipe(recipe);
     closeModal();
   };
 
   useEffect(() => {
-    if ((randomRecipe || !isDayActive) && props.onMealSelect) {
+    if (
+      (randomRecipe || !isDayActive) &&
+      props.onMealSelect &&
+      randomRecipe?.id
+    ) {
       props.onMealSelect({
         date: props.day,
-        // @ts-ignore
-        recipe: randomRecipe?.id || null,
+        recipe: randomRecipe?.id,
         id: props.id,
         isDisabled: !isDayActive
       });

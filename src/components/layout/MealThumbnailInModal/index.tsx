@@ -1,25 +1,23 @@
 import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 
-import RecipeDetailModal, {
-  RecipeType
-} from 'src/features/RecipesPage/RecipeDetailModal';
+import placeholder from 'src/assets/img/placeholder.png';
+import { RecipeType } from 'src/constans/types';
+import RecipeDetailModal from 'src/features/RecipesPage/components/RecipeDetailModal';
 
 import Modal from '../Modal';
 
 import style from './MealThumbnailInModal.module.scss';
 
-import placeholder from '../../../assets/img/placeholder.png';
-
 type MealThumbnailInModalProps = {
   recipe: RecipeType;
   randomRecipe?: boolean;
-  setRecipe?: any;
+  setRecipe?: (recipe: RecipeType) => void;
 };
 
 const MealThumbnailInModal = ({
   recipe,
-  setRecipe
+  setRecipe = () => {}
 }: MealThumbnailInModalProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const closeModal = () => {
@@ -47,10 +45,7 @@ const MealThumbnailInModal = ({
         <BsSearch size={15} />
       </button>
       <Modal closeModal={closeModal} isOpen={isModalOpen}>
-        <RecipeDetailModal
-          closeModal={closeModal}
-          recipe={recipe}
-        />
+        <RecipeDetailModal closeModal={closeModal} recipe={recipe} />
       </Modal>
     </div>
   );

@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 import { MenusApi } from 'src/api';
 import { Loader, useAppSelector } from 'src/components';
 import EndMessage from 'src/components/layout/EndMessage';
+import { MenuType } from 'src/constans/types';
 
 import style from './MenusList.module.scss';
 
 const MenusList = () => {
-  const [menus, setMenus] = useState<any[]>([]);
+  const [menus, setMenus] = useState<MenuType[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
@@ -45,8 +46,6 @@ const MenusList = () => {
     fetchMenus(1);
     setHasMore(true);
   }, [version]);
-
-
 
   return (
     <>
