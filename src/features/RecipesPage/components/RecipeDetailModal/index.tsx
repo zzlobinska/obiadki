@@ -104,18 +104,22 @@ const RecipeDetailModal = (props: NewRecipeModalProps) => {
             ))}
           </ul>
         </div>
-        <div className={style.recipe}>
-          <h3 className={style.recipe__title}>przepis</h3>
-          <ul className={style.steps}>
-            <li className={style.step}>{description}</li>
-          </ul>
-        </div>
-        <div className={style.link}>
-          <h3 className={style.recipe__title}>Link</h3>
-          <a className={style.linkText} href={link}>
-            {link}
-          </a>
-        </div>
+        {description && (
+          <div className={style.recipe}>
+            <h3 className={style.recipe__title}>przepis</h3>
+            <ul className={style.steps}>
+              <li className={style.step}>{description}</li>
+            </ul>
+          </div>
+        )}
+        {link && (
+          <div className={style.link}>
+            <h3 className={style.recipe__title}>Link</h3>
+            <a className={style.linkText} href={link}>
+              {link}
+            </a>
+          </div>
+        )}
         <div className={style.btns}>
           <Button onClick={editModal} label='Edytuj Przepis' />
           <Button onClick={deleteRecipe} label='Usuń Przepis' red />
