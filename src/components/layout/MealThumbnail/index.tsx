@@ -10,7 +10,7 @@ import Modal from '../Modal';
 import style from './MealThumbnail.module.scss';
 
 type MealThumbnailProps = {
-  recipe: RecipeType;
+  recipe: RecipeType | null;
   randomRecipe?: boolean;
 };
 
@@ -22,6 +22,10 @@ const MealThumbnail = ({ recipe, randomRecipe }: MealThumbnailProps) => {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
+  if (!recipe) {
+    return <p>Kiedyś tu był przepis, ale już nie ma :(</p>;
+  }
 
   return (
     <>

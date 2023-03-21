@@ -51,7 +51,6 @@ const SingleMenu = () => {
       }
     }
   };
-  console.log('recipe', menu);
 
   return (
     <div className={style.main}>
@@ -75,7 +74,7 @@ const SingleMenu = () => {
       </div>
       <div className={style.to_print} ref={componentRef}>
         <h2 className={style.printTitle}>Jadłospis {menu?.attributes?.name}</h2>
-        {menu?.attributes?.days?.map((day: MenuDayType) => (
+        { menu?.attributes?.days?.map((day: MenuDayType) => (
           <MenuCard
             id={day.id}
             ready
