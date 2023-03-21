@@ -32,7 +32,8 @@ const RecipeDetailModal = (props: NewRecipeModalProps) => {
     prepare_time,
     title,
     categories,
-    id
+    id,
+    link
   } = props.recipe;
   const category = categories?.data || [];
 
@@ -108,6 +109,12 @@ const RecipeDetailModal = (props: NewRecipeModalProps) => {
           <ul className={style.steps}>
             <li className={style.step}>{description}</li>
           </ul>
+        </div>
+        <div className={style.link}>
+          <h3 className={style.recipe__title}>Link</h3>
+          <a className={style.linkText} href={link}>
+            {link}
+          </a>
         </div>
         <div className={style.btns}>
           <Button onClick={editModal} label='Edytuj Przepis' />
