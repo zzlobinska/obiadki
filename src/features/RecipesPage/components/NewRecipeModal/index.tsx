@@ -69,10 +69,7 @@ const NewRecipeModal = ({
   const [prepareTime, setPrepareTime] = useState<string>(
     recipe?.prepare_time || ''
   );
-<<<<<<< HEAD
   const [link, setLink] = useState<string>(recipe?.link || '');
-=======
->>>>>>> 8640c2723fde5bcc5be5bef24d0f968dd67604fa
   const [categoriesList, setCategoriesList] = useState<ServerCategoryType[]>(
     []
   );
@@ -108,15 +105,12 @@ const NewRecipeModal = ({
 
       return;
     }
-<<<<<<< HEAD
 
     if (!link && !description) {
       notifyDanger(['Dodaj link lub przepis']);
       return;
     }
 
-=======
->>>>>>> 8640c2723fde5bcc5be5bef24d0f968dd67604fa
     if (!validator.allValid()) {
       validator.showMessages();
       return;
@@ -135,12 +129,8 @@ const NewRecipeModal = ({
             ingredient_quantity: ingridient.quantity,
             ingredient_unit: ingridient.unit?.label
           })),
-<<<<<<< HEAD
           categories: selectedCategories,
           link: link
-=======
-          categories: selectedCategories
->>>>>>> 8640c2723fde5bcc5be5bef24d0f968dd67604fa
         }
       };
       if (recipe?.id) {
@@ -228,15 +218,6 @@ const NewRecipeModal = ({
           options={options}
         />
       </div>
-<<<<<<< HEAD
-=======
-      <div className={style.add}>
-        <button onClick={addIngridient} className={style.ingridients_btn}>
-          <p>Dodaj składnik</p>
-          <BsFillPlusSquareFill size={25} />
-        </button>
-      </div>
->>>>>>> 8640c2723fde5bcc5be5bef24d0f968dd67604fa
       {ingridientsList.map((ingridient) => (
         <Ingredient
           setIngridientsList={setIngridientsList}
@@ -247,21 +228,17 @@ const NewRecipeModal = ({
           rule={'required'}
         />
       ))}
-<<<<<<< HEAD
       <div className={style.add}>
         <button onClick={addIngridient} className={style.ingridients_btn}>
           <p>Dodaj składnik</p>
           <BsFillPlusSquareFill size={25} />
         </button>
       </div>
-=======
->>>>>>> 8640c2723fde5bcc5be5bef24d0f968dd67604fa
       <Textarea
         onChange={setDescription}
         value={description}
         label='Przepis'
         id='description'
-<<<<<<< HEAD
         rule={'required'}
       />
       <Input
@@ -269,9 +246,6 @@ const NewRecipeModal = ({
         value={link}
         label='Link'
         id='link'
-=======
-        validator={validator}
->>>>>>> 8640c2723fde5bcc5be5bef24d0f968dd67604fa
         rule={'required'}
       />
       <Button onClick={addRecipe} label={editRecipe ? 'Zapisz' : 'Dodaj'} />

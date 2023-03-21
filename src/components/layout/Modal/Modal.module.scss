@@ -32,17 +32,9 @@
   max-height: 95vh;
   position: relative;
   animation: fadeIn 0.2s ease-out;
-<<<<<<< HEAD
   @media (max-width: 440px) {
     padding: 1rem;
   }
-=======
-  @media (max-width:440px) {
-		padding: 1rem;
-		
-	}
-  
->>>>>>> 8640c2723fde5bcc5be5bef24d0f968dd67604fa
 
   &::-webkit-scrollbar-track {
     border-radius: 10px;
