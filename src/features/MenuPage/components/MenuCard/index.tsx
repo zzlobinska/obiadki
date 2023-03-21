@@ -148,7 +148,7 @@ const MenuCard = (props: MenuCardProps) => {
             [style.mobileColumn]: !randomRecipe
           })}
         >
-          {!randomRecipe ? (
+          {!randomRecipe && !props.ready ? (
             <>
               <button
                 onClick={openModal}
@@ -199,6 +199,7 @@ const MenuCard = (props: MenuCardProps) => {
                   </button>
                 </div>
               )}
+              
             </>
           )}
         </div>

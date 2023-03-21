@@ -47,6 +47,7 @@ export type RecipeType = {
   categories: {
     data: ServerCategoryType[];
   };
+  link: string;
 };
 
 export type ServerRecipeType = {

@@ -69,6 +69,7 @@ const NewRecipeModal = ({
   const [prepareTime, setPrepareTime] = useState<string>(
     recipe?.prepare_time || ''
   );
+  const [link, setLink] = useState<string>(recipe?.link || '');
   const [categoriesList, setCategoriesList] = useState<ServerCategoryType[]>(
     []
   );
@@ -104,6 +105,12 @@ const NewRecipeModal = ({
 
       return;
     }
+
+    if (!link && !description) {
+      notifyDanger(['Dodaj link lub przepis']);
+      return;
+    }
+
     if (!validator.allValid()) {
       validator.showMessages();
       return;
@@ -122,7 +129,8 @@ const NewRecipeModal = ({
             ingredient_quantity: ingridient.quantity,
             ingredient_unit: ingridient.unit?.label
           })),
-          categories: selectedCategories
+          categories: selectedCategories,
+          link: link
         }
       };
       if (recipe?.id) {
@@ -210,12 +218,6 @@ const NewRecipeModal = ({
           options={options}
         />
       </div>
-      <div className={style.add}>
-        <button onClick={addIngridient} className={style.ingridients_btn}>
-          <p>Dodaj składnik</p>
-          <BsFillPlusSquareFill size={25} />
-        </button>
-      </div>
       {ingridientsList.map((ingridient) => (
         <Ingredient
           setIngridientsList={setIngridientsList}
@@ -226,12 +228,24 @@ const NewRecipeModal = ({
           rule={'required'}
         />
       ))}
+      <div className={style.add}>
+        <button onClick={addIngridient} className={style.ingridients_btn}>
+          <p>Dodaj składnik</p>
+          <BsFillPlusSquareFill size={25} />
+        </button>
+      </div>
       <Textarea
         onChange={setDescription}
         value={description}
         label='Przepis'
         id='description'
-        validator={validator}
+        rule={'required'}
+      />
+      <Input
+        onChange={(e) => setLink(e.target.value)}
+        value={link}
+        label='Link'
+        id='link'
         rule={'required'}
       />
       <Button onClick={addRecipe} label={editRecipe ? 'Zapisz' : 'Dodaj'} />

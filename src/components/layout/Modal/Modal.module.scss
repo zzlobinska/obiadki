@@ -12,7 +12,6 @@
   align-items: center;
   justify-content: center;
   animation-duration: 0.1s;
-  
 
   &.blur {
     backdrop-filter: blur(10px);
@@ -30,14 +29,12 @@
   max-width: 705px;
   animation-duration: 0.1s;
   overflow: auto;
-  max-height: 80vh;
+  max-height: 95vh;
   position: relative;
   animation: fadeIn 0.2s ease-out;
-  @media (max-width:440px) {
-		padding: 1rem;
-		
-	}
-  
+  @media (max-width: 440px) {
+    padding: 1rem;
+  }
 
   &::-webkit-scrollbar-track {
     border-radius: 10px;
